@@ -8,16 +8,16 @@
   <style>
     :root {
       color-scheme: light;
-      --bg: #f7f4ee;
-      --paper: #fffdf8;
-      --ink: #27231d;
-      --muted: #686158;
-      --line: #ddd3c4;
-      --accent: #0f6b63;
-      --accent-soft: #e4f1ee;
+      --bg: #f3f7f6;
+      --paper: #ffffff;
+      --ink: #202522;
+      --muted: #5f6b66;
+      --line: #d6e1dd;
+      --accent: #0f766e;
+      --accent-soft: #e0f2ef;
       --warning: #8a4b12;
       --warning-bg: #fff2dc;
-      --shadow: 0 18px 48px rgba(57, 48, 34, 0.12);
+      --shadow: 0 18px 48px rgba(24, 44, 38, 0.12);
       --radius: 8px;
     }
 
@@ -35,12 +35,19 @@
       color: var(--ink);
       font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       line-height: 1.72;
+      overflow-wrap: break-word;
     }
 
     a {
       color: var(--accent);
       text-decoration-thickness: 1px;
       text-underline-offset: 3px;
+    }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 3px solid rgba(15, 118, 110, 0.28);
+      outline-offset: 3px;
     }
 
     .site-shell {
@@ -55,7 +62,7 @@
       height: 100vh;
       padding: 28px 22px;
       border-right: 1px solid var(--line);
-      background: rgba(255, 253, 248, 0.76);
+      background: rgba(255, 255, 255, 0.82);
       backdrop-filter: blur(12px);
       overflow: auto;
     }
@@ -402,11 +409,12 @@
       });
 
     function renderMarkdown(markdown) {
-      const lines = markdown.replace(/\r\n/g, "\n").split("\n");
+      const lines = stripInlineMarkdownToc(markdown).replace(/\r\n/g, "\n").split("\n");
       const html = [];
       let paragraph = [];
       let listType = null;
       let tableRows = [];
+      const headingIds = new Map();
 
       function flushParagraph() {
         if (paragraph.length) {
@@ -463,7 +471,7 @@
           flushList();
           const level = heading[1].length;
           const text = heading[2].trim();
-          html.push(`<h${level} id="${slugify(text)}">${parseInline(text)}</h${level}>`);
+          html.push(`<h${level} id="${uniqueSlug(text, headingIds)}">${parseInline(text)}</h${level}>`);
           continue;
         }
 
@@ -484,10 +492,8 @@
             html.push(`<${desired}>`);
             listType = desired;
           }
-          let item = (unordered || ordered)[1];
-          item = item.replace(/^\[ \]\s+/, '<input type="checkbox" disabled> ');
-          item = item.replace(/^\[x\]\s+/i, '<input type="checkbox" checked disabled> ');
-          html.push(`<li>${parseInline(item)}</li>`);
+          const parsedItem = parseListItem((unordered || ordered)[1]);
+          html.push(`<li>${parsedItem}</li>`);
           continue;
         }
 
@@ -499,6 +505,43 @@
       flushList();
       flushTable();
       return html.join("\n");
+    }
+
+    function stripInlineMarkdownToc(markdown) {
+      const lines = markdown.replace(/\r\n/g, "\n").split("\n");
+      const output = [];
+      let skippingToc = false;
+
+      for (const line of lines) {
+        if (/^##\s+目录\s*$/.test(line.trim())) {
+          skippingToc = true;
+          continue;
+        }
+
+        if (skippingToc && /^##\s+/.test(line.trim())) {
+          skippingToc = false;
+        }
+
+        if (!skippingToc) {
+          output.push(line);
+        }
+      }
+
+      return output.join("\n");
+    }
+
+    function parseListItem(item) {
+      const unchecked = /^\[ \]\s+(.+)$/.exec(item);
+      if (unchecked) {
+        return `<input type="checkbox" disabled> ${parseInline(unchecked[1])}`;
+      }
+
+      const checked = /^\[x\]\s+(.+)$/i.exec(item);
+      if (checked) {
+        return `<input type="checkbox" checked disabled> ${parseInline(checked[1])}`;
+      }
+
+      return parseInline(item);
     }
 
     function splitTableRow(row) {
@@ -529,6 +572,13 @@
         .replace(/\s+/g, "-");
     }
 
+    function uniqueSlug(text, seen) {
+      const base = slugify(text);
+      const count = seen.get(base) || 0;
+      seen.set(base, count + 1);
+      return count === 0 ? base : `${base}-${count + 1}`;
+    }
+
     function buildToc() {
       const headings = [...content.querySelectorAll("h2")].filter((heading) => heading.textContent !== "目录");
       toc.innerHTML = headings.map((heading) => (
@@ -541,7 +591,8 @@
       if (!links.length) return;
 
       let activeId = links[0].getAttribute("href").slice(1);
-      for (const heading of content.querySelectorAll("h2")) {
+      const headings = [...content.querySelectorAll("h2")].filter((heading) => heading.textContent !== "目录");
+      for (const heading of headings) {
         if (heading.offsetTop - window.scrollY < 160) {
           activeId = heading.id;
         }
