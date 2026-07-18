@@ -199,6 +199,62 @@
       padding: 38px clamp(18px, 4vw, 64px) 64px;
     }
 
+    .resource-picker {
+      max-width: 880px;
+      margin: 0 auto 18px;
+    }
+
+    .resource-picker h2 {
+      margin: 0 0 4px;
+      font-size: 20px;
+      line-height: 1.35;
+    }
+
+    .resource-picker > p {
+      margin: 0 0 12px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .resource-options {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .resource-choice {
+      display: grid;
+      gap: 3px;
+      min-width: 0;
+      min-height: 88px;
+      padding: 14px 16px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--paper);
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .resource-choice:hover {
+      border-color: var(--accent);
+    }
+
+    .resource-choice[aria-current="page"] {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+    }
+
+    .resource-choice strong {
+      color: var(--accent);
+      font-size: 16px;
+    }
+
+    .resource-choice span {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
     .reader {
       max-width: 880px;
       margin: 0 auto;
@@ -347,6 +403,10 @@
         padding: 18px 12px 44px;
       }
 
+      .resource-options {
+        grid-template-columns: 1fr;
+      }
+
       .reader {
         padding: 22px 18px;
         border-radius: 8px;
@@ -359,6 +419,7 @@
       }
 
       .sidebar,
+      .resource-picker,
       .top-link {
         display: none;
       }
@@ -411,6 +472,20 @@
       <ol class="toc" id="toc"></ol>
     </aside>
     <main>
+      <section class="resource-picker" aria-labelledby="resourcePickerTitle">
+        <h2 id="resourcePickerTitle">选择要查看的资料</h2>
+        <p>两份中文资料都已发布，可随时切换。</p>
+        <div class="resource-options">
+          <a class="resource-choice" href="#content" aria-current="page">
+            <strong>生产准备课中文手册</strong>
+            <span>分娩、住院与产后早期准备 · 当前页面</span>
+          </a>
+          <a class="resource-choice" href="the_baby_academy_lesson_1.html">
+            <strong>婴儿护理课讲义</strong>
+            <span>换尿布、脐带、安全睡眠与新生儿日常护理 · 打开讲义</span>
+          </a>
+        </div>
+      </section>
       <article class="reader" id="content" aria-live="polite">
         <div class="loading">正在加载手册内容...</div>
       </article>
