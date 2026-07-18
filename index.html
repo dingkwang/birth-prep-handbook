@@ -103,6 +103,38 @@
       margin: 22px 0 24px;
     }
 
+    .resource-nav {
+      display: grid;
+      gap: 6px;
+      margin: 22px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .resource-nav a {
+      display: block;
+      padding: 10px 12px;
+      border: 1px solid transparent;
+      border-radius: var(--radius);
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.4;
+      text-decoration: none;
+    }
+
+    .resource-nav a:hover {
+      border-color: var(--line);
+      background: var(--paper);
+      color: var(--accent);
+    }
+
+    .resource-nav a[aria-current="page"] {
+      border-color: var(--line);
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-weight: 700;
+    }
+
     .button {
       display: inline-flex;
       align-items: center;
@@ -360,10 +392,17 @@
   <div class="site-shell">
     <aside class="sidebar" aria-label="页面导航">
       <div class="brand">
-        <span class="brand-label">Markdown Handbook</span>
+        <span class="brand-label">准父母中文资料库</span>
         <h1>生产准备课中文手册</h1>
         <p>面向准父母的分娩、住院和产后早期准备指南。</p>
       </div>
+      <p class="toc-title">选择资料</p>
+      <nav aria-label="资料选择">
+        <ul class="resource-nav">
+          <li><a href="index.html" aria-current="page">生产准备课中文手册</a></li>
+          <li><a href="the_baby_academy_lesson_1.html">婴儿护理课讲义</a></li>
+        </ul>
+      </nav>
       <div class="actions">
         <a class="button primary" href="生产准备课中文手册.md">查看 Markdown</a>
         <button class="button" type="button" id="printButton">打印 / 保存 PDF</button>
