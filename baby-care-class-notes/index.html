@@ -77,6 +77,13 @@
       margin: 0 0 6px;
       letter-spacing: 0.02em;
     }
+    .toc-sub {
+      font-family: var(--font-ui);
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin: 0 0 22px;
+      line-height: 1.4;
+    }
     .toc-home {
       display: inline-block;
       margin: 0 0 14px;
@@ -86,52 +93,6 @@
       text-decoration: none;
     }
     .toc-home:hover { color: var(--coral); }
-    .toc-sub {
-      font-family: var(--font-ui);
-      font-size: 0.75rem;
-      color: var(--muted);
-      margin: 0 0 22px;
-      line-height: 1.4;
-    }
-    .resource-label {
-      margin: 0 0 6px;
-      color: var(--muted);
-      font-family: var(--font-ui);
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-    .resource-nav {
-      display: grid;
-      gap: 4px;
-      margin: 0 0 22px;
-    }
-    .toc .resource-nav a {
-      border: 1px solid transparent;
-      border-left-width: 1px;
-      border-radius: 8px;
-      padding: 8px 10px;
-    }
-    .toc .resource-nav a:hover {
-      border-color: var(--line);
-      background: var(--bg-card);
-    }
-    .toc .resource-nav a[aria-current="page"] {
-      border-color: var(--line);
-      background: var(--ok-bg);
-      color: var(--green);
-      font-weight: 600;
-    }
-    .chapter-label-nav {
-      margin: 0 0 6px;
-      color: var(--muted);
-      font-family: var(--font-ui);
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
     .toc nav { display: flex; flex-direction: column; gap: 2px; }
     .toc a {
       font-family: var(--font-ui);
@@ -426,6 +387,185 @@
       .backdrop.show { display: block; }
     }
 
+
+    .fig {
+      margin: 16px 0 8px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: #faf6f0;
+      overflow: hidden;
+      box-shadow: 0 6px 20px rgba(28,42,36,.06);
+    }
+    .fig img {
+      width: 100%;
+      display: block;
+      vertical-align: middle;
+      background: #1a1a1a;
+    }
+    .fig figcaption {
+      font-family: var(--font-ui);
+      font-size: 0.82rem;
+      color: var(--muted);
+      padding: 10px 14px 12px;
+      line-height: 1.45;
+    }
+    .fig-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 16px 0;
+    }
+    @media (max-width:700px) { .fig-grid { grid-template-columns: 1fr; } }
+    .fig-grid .fig { margin: 0; }
+
+    .abc-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin: 14px 0 18px;
+    }
+    @media (max-width:700px) { .abc-grid { grid-template-columns: 1fr 1fr; } }
+    .abc-tile {
+      background: #faf6f0;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 12px 12px 14px;
+    }
+    .abc-tile .letter {
+      font-family: var(--font-display);
+      font-size: 1.7rem;
+      color: var(--coral);
+      line-height: 1;
+      display: block;
+      margin-bottom: 4px;
+    }
+    .abc-tile .label {
+      font-family: var(--font-ui);
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--green);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .abc-tile .gloss {
+      font-family: var(--font-ui);
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      line-height: 1.45;
+      margin: 0;
+    }
+
+    .split-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 14px 0;
+    }
+    @media (max-width:700px) { .split-grid { grid-template-columns: 1fr; } }
+    .split-ok, .split-no {
+      border-radius: 14px;
+      padding: 14px 16px;
+      font-family: var(--font-ui);
+      font-size: 0.92rem;
+    }
+    .split-ok { background: var(--ok-bg); border: 1px solid #c5dfd2; }
+    .split-no { background: var(--warn-bg); border: 1px solid var(--warn-border); }
+    .split-ok h4, .split-no h4 {
+      margin: 0 0 8px;
+      font-size: 0.95rem;
+    }
+    .split-ok h4 { color: var(--green); }
+    .split-no h4 { color: #8a5a20; }
+    .split-ok ul, .split-no ul { margin: 0; padding-left: 1.1em; color: var(--ink-soft); }
+
+    .check-item {
+      display: block;
+      position: relative;
+      padding: 10px 12px 10px 40px;
+      margin: 0 0 8px;
+      background: #faf6f0;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      font-family: var(--font-ui);
+      font-size: 0.94rem;
+      color: var(--ink-soft);
+      cursor: pointer;
+    }
+    .check-item input {
+      position: absolute;
+      left: 12px;
+      top: 14px;
+      width: 16px;
+      height: 16px;
+      accent-color: var(--green-soft);
+    }
+    .check-item:has(input:checked) {
+      opacity: 0.72;
+      text-decoration: line-through;
+      color: var(--muted);
+    }
+    .check-progress {
+      font-family: var(--font-ui);
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin: 0 0 12px;
+    }
+    .check-actions {
+      font-family: var(--font-ui);
+      font-size: 0.85rem;
+      margin: 8px 0 0;
+    }
+    .check-actions button {
+      border: none;
+      background: none;
+      color: var(--green-soft);
+      cursor: pointer;
+      text-decoration: underline;
+      padding: 0;
+      font: inherit;
+    }
+
+    .chapter-nav {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 20px;
+      padding-top: 14px;
+      border-top: 1px dashed var(--line);
+      font-family: var(--font-ui);
+      font-size: 0.88rem;
+    }
+    .chapter-nav a {
+      color: var(--green-soft);
+      text-decoration: none;
+      padding: 8px 0;
+    }
+    .chapter-nav a:hover { color: var(--coral); }
+
+    .fab-top {
+      display: none;
+      position: fixed;
+      right: 18px;
+      bottom: 22px;
+      z-index: 35;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      border: 1px solid var(--line);
+      background: var(--bg-card);
+      color: var(--green);
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      font-size: 1.2rem;
+      font-family: var(--font-ui);
+    }
+    .fab-top.show { display: inline-flex; align-items: center; justify-content: center; }
+
+    @media print {
+      .fab-top, .check-actions { display: none !important; }
+      .fig { break-inside: avoid; box-shadow: none; }
+    }
+
     @media print {
       .toc, .toc-toggle, .backdrop { display: none !important; }
       .shell { display: block; }
@@ -443,24 +583,75 @@
       }
       body { background: #fff; font-size: 12pt; }
     }
+
+    /* progress bar */
+    .read-progress {
+      position: fixed; top: 0; left: 0; height: 3px; width: 100%;
+      z-index: 50; pointer-events: none; background: transparent;
+    }
+    .read-progress > span {
+      display: block; height: 100%; width: 0%;
+      background: linear-gradient(90deg, var(--coral), var(--green-soft));
+      transition: width .08s linear;
+    }
+    .hero-cover {
+      margin: 18px 0 0;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.18);
+      max-width: 420px;
+    }
+    .hero-cover img { width: 100%; display: block; opacity: .92; }
+    .hero-inner { position: relative; z-index: 1; }
+    .takeaway {
+      margin: 0 0 14px;
+      padding: 12px 14px;
+      border-left: 4px solid var(--green-soft);
+      background: var(--ok-bg);
+      border-radius: 0 12px 12px 0;
+      font-family: var(--font-ui);
+      font-size: 0.92rem;
+      color: var(--ink-soft);
+    }
+    .takeaway strong { color: var(--green); }
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0 16px;
+      font-family: var(--font-ui);
+      font-size: 0.9rem;
+    }
+    .data-table th, .data-table td {
+      border: 1px solid var(--line);
+      padding: 8px 10px;
+      text-align: left;
+    }
+    .data-table th { background: #f0ebe3; color: var(--green); }
+    .data-table tr:nth-child(even) td { background: #faf6f0; }
+    .callout.do { background: var(--ok-bg); border-color: #c5dfd2; }
+    .callout.do .title { color: var(--green); }
+    .callout.dont { background: var(--coral-soft); border-color: #e0b8b0; }
+    .callout.dont .title { color: var(--coral); }
+    #ch14 { scroll-margin-top: 12px; }
+    @media print {
+      .read-progress, .fab-top, .toc-toggle, .check-actions, .chapter-nav { display: none !important; }
+      #ch14 { page-break-before: always; break-before: page; }
+      .no-print { display: none !important; }
+    }
   </style>
 </head>
 <body>
+  <div class="read-progress" aria-hidden="true"><span id="readBar"></span></div>
+  <button class="fab-top" id="fabTop" type="button" aria-label="回到顶部">↑</button>
   <button class="toc-toggle" id="tocToggle" type="button" aria-expanded="false">目录</button>
   <div class="backdrop" id="backdrop" hidden></div>
 
   <div class="shell">
     <aside class="toc" id="toc" aria-label="讲义目录">
-      <a class="toc-home" href="index.html">← 返回资料首页</a>
+      <a class="toc-home" href="../index.html">← 返回资料首页</a>
       <p class="toc-brand">婴儿护理课讲义</p>
       <p class="toc-sub">Free Baby Care Class<br />结构化中文要点</p>
-      <p class="resource-label">选择资料</p>
-      <nav class="resource-nav" aria-label="资料选择">
-        <a href="birth_preparation.html">生产准备课中文手册</a>
-        <a href="the_baby_academy_lesson_1.html" aria-current="page">婴儿护理课讲义</a>
-      </nav>
-      <p class="chapter-label-nav">本页目录</p>
-      <nav class="chapter-nav">
+      <nav>
         <a href="#intro">课程说明</a>
         <a href="#ch01">01 · 皮肤与保湿</a>
         <a href="#ch02">02 · 新生儿皮疹与粟丘疹</a>
@@ -481,14 +672,19 @@
 
     <main>
       <header class="hero" id="top">
-        <p class="hero-kicker">The Baby Academy · 中文讲义</p>
-        <h1>婴儿护理免费课程</h1>
-        <p>根据 Cris 主讲的 Free Baby Care Class 中文字幕整理：洗澡后护理、换尿布、脐带、安全睡眠、室温穿衣与常见问答。</p>
-        <div class="hero-meta">
-          <span>讲师 Cris</span>
-          <span>约 90 分钟课程</span>
-          <span>摄氏度表述</span>
-          <span>可打印 / GitHub Pages</span>
+        <div class="hero-inner">
+          <p class="hero-kicker">The Baby Academy · 中文讲义</p>
+          <h1>婴儿护理免费课程</h1>
+          <p>根据 Cris 主讲的 Free Baby Care Class 中文字幕整理：洗澡后护理、换尿布、脐带、安全睡眠、室温穿衣与常见问答。</p>
+          <div class="hero-meta">
+            <span>讲师 Cris</span>
+            <span>约 90 分钟课程</span>
+            <span>摄氏度表述</span>
+            <span>可打印 / 本地静态页</span>
+          </div>
+          <figure class="hero-cover">
+            <img src="images/20_cover.jpg" alt="课程封面截图" width="840" height="540" />
+          </figure>
         </div>
       </header>
 
@@ -502,8 +698,15 @@
 
       <!-- 01 -->
       <section class="chapter" id="ch01">
-        <p class="chapter-label">Chapter 01</p>
+        <p class="chapter-label">第 01 章</p>
         <h2>皮肤与保湿</h2>
+
+        <p class="takeaway"><strong>带走：</strong>皮肤干燥才保湿；健康皮肤不必堆产品。</p>
+        <figure class="fig">
+          <img src="images/01_skin.jpg" alt="皮肤护理课件截图" loading="lazy" width="900" height="600" />
+          <figcaption>课中课件：皮肤与指甲护理开篇</figcaption>
+        </figure>
+
         <div class="badges">
           <span class="badge">干燥才涂</span>
           <span class="badge sand">单一成分优先</span>
@@ -528,8 +731,25 @@
 
       <!-- 02 -->
       <section class="chapter" id="ch02">
-        <p class="chapter-label">Chapter 02</p>
+        <p class="chapter-label">第 02 章</p>
         <h2>新生儿皮疹与粟丘疹</h2>
+
+        <p class="takeaway"><strong>带走：</strong>新生儿皮疹多约两周；超约 2.5 周问医生；粟丘疹不挤。</p>
+        <figure class="fig">
+          <img src="images/02_rash.jpg" alt="皮疹课件" loading="lazy" width="900" height="600" />
+          <figcaption>课中课件：皮肤干燥与新生儿皮疹</figcaption>
+        </figure>
+
+        <figure class="fig">
+          <img src="images/02_rash_zoom.jpg" alt="皮疹示意特写" loading="lazy" width="900" height="600" />
+          <figcaption>课中课件裁切：皮疹示意特写</figcaption>
+        </figure>
+
+        <figure class="fig">
+          <img src="images/03_milia.jpg" alt="粟丘疹课件" loading="lazy" width="900" height="600" />
+          <figcaption>课中课件：粟丘疹（鼻部小白点）与指甲示意</figcaption>
+        </figure>
+
         <div class="badges">
           <span class="badge">约 50% 婴儿</span>
           <span class="badge coral">超 2.5 周要问医生</span>
@@ -551,8 +771,25 @@
 
       <!-- 03 -->
       <section class="chapter" id="ch03">
-        <p class="chapter-label">Chapter 03</p>
+        <p class="chapter-label">第 03 章</p>
         <h2>剪指甲</h2>
+
+        <p class="takeaway"><strong>带走：</strong>优先指甲锉；睡着再修；过指腹或抓脸才修。</p>
+        <figure class="fig">
+          <img src="images/04_nails.jpg" alt="指甲课件" loading="lazy" width="900" height="600" />
+          <figcaption>课中课件：指甲护理要点</figcaption>
+        </figure>
+
+        <figure class="fig">
+          <img src="images/04_nail_tools.jpg" alt="指甲工具" loading="lazy" width="900" height="600" />
+          <figcaption>课中课件：修甲工具示意（优先锉）</figcaption>
+        </figure>
+
+        <figure class="fig">
+          <img src="images/04_nails_demo.jpg" alt="剪指甲演示" loading="lazy" width="900" height="600" />
+          <figcaption>课中演示：睡着后用指甲锉打磨</figcaption>
+        </figure>
+
         <div class="badges">
           <span class="badge">优先用锉</span>
           <span class="badge sand">睡着再修</span>
@@ -573,8 +810,20 @@
 
       <!-- 04 -->
       <section class="chapter" id="ch04">
-        <p class="chapter-label">Chapter 04</p>
+        <p class="chapter-label">第 04 章</p>
         <h2>换尿布基础</h2>
+
+        <p class="takeaway"><strong>带走：</strong>脏尿布立刻换；女婴前→后；前后洗手。</p>
+        <figure class="fig">
+          <img src="images/05_diaper.jpg" alt="换尿布课件" loading="lazy" width="900" height="600" />
+          <figcaption>课中：换尿布环节</figcaption>
+        </figure>
+
+        <figure class="fig">
+          <img src="images/05_diaper_demo.jpg" alt="换尿布演示" loading="lazy" width="900" height="600" />
+          <figcaption>课中演示：抬高髋部垫尿布</figcaption>
+        </figure>
+
         <div class="badges">
           <span class="badge coral">脏尿布立刻换</span>
           <span class="badge">前后都要洗手</span>
@@ -603,6 +852,10 @@
           </div>
         </div>
         <h3>湿巾</h3>
+        <figure class="fig">
+          <img src="images/05_wipes_no_cream.jpg" alt="湿巾与护理原则" loading="lazy" width="900" height="600" />
+          <figcaption>课中：清洁与“无需预防性堆霜”相关画面</figcaption>
+        </figure>
         <ul>
           <li>医院可能给干湿巾 + 温水。</li>
           <li>课中偏好高含水量的“水湿巾”（约 99.9% 水）。</li>
@@ -619,8 +872,20 @@
 
       <!-- 05 -->
       <section class="chapter" id="ch05">
-        <p class="chapter-label">Chapter 05</p>
+        <p class="chapter-label">第 05 章</p>
         <h2>大便颜色与黄疸信号</h2>
+
+        <p class="takeaway"><strong>带走：</strong>胎便→过渡→黄芝麻便是常见时间线；黄疸由医护判断。</p>
+        <figure class="fig">
+          <img src="images/06_stool.jpg" alt="四种大便对比" loading="lazy" width="900" height="600" />
+          <figcaption>课中课件：四种尿布输出（胎便→过渡→黄便等）</figcaption>
+        </figure>
+
+        <figure class="fig">
+          <img src="images/06_jaundice_stool.jpg" alt="黄便与黄疸相关说明" loading="lazy" width="900" height="600" />
+          <figcaption>课中：黄便/胆红素相关时间线（非诊断）</figcaption>
+        </figure>
+
         <ul>
           <li><strong>胎便</strong>：出生 1–2 天，黑绿黏稠如焦油，可擦掉。</li>
           <li>开始吃奶后：过渡为偏棕、偏稀的便，多为正常排出，不等于腹泻。</li>
@@ -636,8 +901,25 @@
 
       <!-- 06 -->
       <section class="chapter" id="ch06">
-        <p class="chapter-label">Chapter 06</p>
+        <p class="chapter-label">第 06 章</p>
         <h2>脐带护理</h2>
+
+        <p class="takeaway"><strong>带走：</strong>脐带保持干燥；尿布折在脐带下方直到脱落。</p>
+        <figure class="fig">
+          <img src="images/07_umbilical.jpg" alt="脐带护理" loading="lazy" width="900" height="600" />
+          <figcaption>课中课件：脐带护理时间线（第1天 / 3–5天 / 约第7天）</figcaption>
+        </figure>
+
+        <figure class="fig">
+          <img src="images/07_cord_day1.jpg" alt="脐带夹与分期" loading="lazy" width="900" height="600" />
+          <figcaption>课中课件：脐带夹/分期示意</figcaption>
+        </figure>
+
+        <figure class="fig">
+          <img src="images/07_cord_fold.jpg" alt="尿布折边露脐带" loading="lazy" width="900" height="600" />
+          <figcaption>课中演示：尿布折在脐带下方</figcaption>
+        </figure>
+
         <div class="badges">
           <span class="badge">保持干燥</span>
           <span class="badge sand">尿布折在脐带下方</span>
@@ -652,15 +934,39 @@
 
       <!-- 07 -->
       <section class="chapter" id="ch07">
-        <p class="chapter-label">Chapter 07</p>
+        <p class="chapter-label">第 07 章</p>
         <h2>尿布疹与药膏原则</h2>
+
+        <p class="takeaway"><strong>带走：</strong>有疹才涂药膏；不为“以防万一”预防性堆霜。</p>
+        <figure class="fig">
+          <img src="images/07_ointment.jpg" alt="湿巾与药膏原则" loading="lazy" width="900" height="600" />
+          <figcaption>课中：用什么清洁、无需预防性药膏</figcaption>
+        </figure>
+
         <div class="badges">
           <span class="badge coral">需要才涂</span>
           <span class="badge">非预防性堆霜</span>
         </div>
+        <div class="split-grid">
+          <div class="split-ok">
+            <h4>✓ 应当</h4>
+            <ul>
+              <li>有明显尿布疹再治疗</li>
+              <li>勤换脏湿尿布减少刺激</li>
+              <li>包皮环切等医嘱场景按医生要求涂软膏</li>
+            </ul>
+          </div>
+          <div class="split-no">
+            <h4>✗ 不建议</h4>
+            <ul>
+              <li>无疹时预防性堆 A&amp;D / Aquaphor / 凡士林当“隔离层”</li>
+              <li>因堵塞毛孔反而诱发疹</li>
+              <li>自行套用网红“厚厚一坨”</li>
+            </ul>
+          </div>
+        </div>
         <ul>
           <li>前 4–6 周换尿布很勤，尿布疹相对少；<strong>有疹才治疗</strong>。</li>
-          <li>不必预防性涂 A&amp;D、Aquaphor、凡士林等当“隔离层”——产品可能堵塞毛孔反而致疹。</li>
           <li>课中举例：有的药膏约 <strong>45–60 秒</strong> 左右可察觉起效语境；有描述“到下次换尿布疹子改善”的产品体验——以医嘱与说明书为准。</li>
           <li>包皮环切术后：课中提及换尿布时涂 A&amp;D 等软膏护理（具体时长与产品听儿科医生）。</li>
         </ul>
@@ -672,21 +978,36 @@
 
       <!-- 08 -->
       <section class="chapter" id="ch08">
-        <p class="chapter-label">Chapter 08</p>
+        <p class="chapter-label">第 08 章</p>
         <h2>父母支持：新手 ABC</h2>
-        <div class="grid-2">
-          <div class="mini-card">
-            <h4>A · Ask &amp; Accept</h4>
-            <p>学会求助、说清需要什么、接受他人帮助。不必一人扛；“全村”支持是正常的。</p>
+
+        <p class="takeaway"><strong>带走：</strong>会求助、会筛选信息、会上靠谱的课（A·B·C）。</p>
+        <figure class="fig">
+          <img src="images/08_abc.jpg" alt="父母支持ABC" loading="lazy" width="900" height="600" />
+          <figcaption>课中课件：新手父母要学会求助（Ask for help）</figcaption>
+        </figure>
+
+        <figure class="fig">
+          <img src="images/08_abc_full.jpg" alt="父母 ABC 课件" loading="lazy" width="900" height="600" />
+          <figcaption>课中课件：新手父母 ABC 完整画面</figcaption>
+        </figure>
+
+        <div class="abc-grid">
+          <div class="abc-tile">
+            <span class="letter">A</span>
+            <span class="label">求助与接受</span>
+            <p class="gloss">Ask &amp; Accept：说清需要什么，接受帮助。“全村”支持是正常的。</p>
           </div>
-          <div class="mini-card">
-            <h4>B · Browse carefully</h4>
-            <p>可以上网，但警惕信息过载与不实网红内容；以医护专业信息为准。</p>
+          <div class="abc-tile">
+            <span class="letter">B</span>
+            <span class="label">谨慎浏览</span>
+            <p class="gloss">Browse carefully：可上网，警惕过载与不实内容；以医护为准。</p>
           </div>
-        </div>
-        <div class="mini-card" style="margin-top:12px">
-          <h4>C · Classes</h4>
-          <p>系统上课能把科学与可操作经验结合。课中提及医院正式课程可能很贵；The Baby Academy 定位是更可及的实用课。演示也可在 Instagram 相关账号回看。</p>
+          <div class="abc-tile">
+            <span class="letter">C</span>
+            <span class="label">系统上课</span>
+            <p class="gloss">Classes：把科学与可操作经验结合；可及的实用课优于零散短视频。</p>
+          </div>
         </div>
         <ul>
           <li>期望管理：分娩与育儿常有意外；每个宝宝都不同，少和别人的宝宝硬比。</li>
@@ -696,8 +1017,20 @@
 
       <!-- 09 -->
       <section class="chapter" id="ch09">
-        <p class="chapter-label">Chapter 09</p>
+        <p class="chapter-label">第 09 章</p>
         <h2>安全睡眠（重中之重）</h2>
+
+        <p class="takeaway"><strong>带走：</strong>Alone · Back · Crib：独立空间、始终仰卧、坚实婴儿床。</p>
+        <figure class="fig">
+          <img src="images/09_sleep.jpg" alt="仰卧安全睡眠" loading="lazy" width="900" height="600" />
+          <figcaption>课中：仰卧睡眠与 SIDS 风险下降（课中口述数据）</figcaption>
+        </figure>
+
+        <figure class="fig">
+          <img src="images/10_sleep_abc.jpg" alt="Alone 独自睡眠" loading="lazy" width="900" height="600" />
+          <figcaption>课中：安全睡眠 A Alone — 独立睡眠空间</figcaption>
+        </figure>
+
         <div class="badges">
           <span class="badge coral">始终仰卧</span>
           <span class="badge">Alone · Back · Crib</span>
@@ -708,20 +1041,66 @@
           <li>每次睡眠：<strong>仰卧</strong>。</li>
         </ul>
         <h3>安全睡眠 ABC（及延伸）</h3>
+        <div class="abc-grid">
+          <div class="abc-tile">
+            <span class="letter">A</span>
+            <span class="label">独立空间</span>
+            <p class="gloss">Alone：自己的睡眠空间，不与父母同床共睡。</p>
+          </div>
+          <div class="abc-tile">
+            <span class="letter">B</span>
+            <span class="label">始终仰卧</span>
+            <p class="gloss">Back：每次睡眠仰卧。</p>
+          </div>
+          <div class="abc-tile">
+            <span class="letter">C</span>
+            <span class="label">婴儿床</span>
+            <p class="gloss">Crib：婴儿床/摇篮；前六个月同房不同床（AAP 语境）。</p>
+          </div>
+        </div>
         <ul>
-          <li><strong>A Alone</strong>：自己的睡眠空间，不与父母同床共睡。</li>
-          <li><strong>B Back</strong>：仰卧。</li>
-          <li><strong>C Crib</strong>：婴儿床/摇篮；AAP 建议前六个月与主要照顾者<strong>同房不同床</strong>。</li>
           <li><strong>D</strong>：不要抱着宝宝在沙发上睡着；松手跌落风险极高。</li>
           <li><strong>E Early</strong>：感觉不对尽早联系医生，别等“很重”才打。</li>
           <li><strong>F Firm</strong>：坚实平坦床垫 + 合适床单；脚朝床尾方向布置睡眠。</li>
           <li>睡眠空间极简：不要毛绒、床铃杂物；紧绷床单即可。</li>
         </ul>
+        <div class="split-grid">
+          <div class="split-ok">
+            <h4>✓ 睡眠空间</h4>
+            <ul>
+              <li>仰卧</li>
+              <li>坚实平坦床垫 + 紧绷床单</li>
+              <li>同房不同床（前六个月语境）</li>
+            </ul>
+          </div>
+          <div class="split-no">
+            <h4>✗ 不要</h4>
+            <ul>
+              <li>同床共睡</li>
+              <li>沙发/扶手椅上抱着睡着</li>
+              <li>毛绒、枕头、厚被、床围等松软物</li>
+            </ul>
+          </div>
+        </div>
         <div class="callout warn">
           <span class="title">不推荐用于睡眠的物品（课中列举）</span>
           婴儿睡舱/睡窝、哺乳枕当睡具、枕头、羽绒被、厚重被褥、吊床、睡眠定位垫、婴儿床围等。医嘱特例除外。同床共睡被明确反对；举过真实窒息悲剧案例作警示。
         </div>
+        <figure class="fig">
+          <img src="images/09_unsafe_sleep.jpg" alt="不推荐睡眠用品列表" loading="lazy" width="900" height="600" />
+          <figcaption>课中课件：AAP 语境下不推荐的睡眠用品示意</figcaption>
+        </figure>
         <h3>襁褓</h3>
+        <div class="fig-grid">
+          <figure class="fig">
+            <img src="images/11_swaddle.jpg" alt="襁褓示意" loading="lazy" width="900" height="600" />
+            <figcaption>课中：襁褓环节画面</figcaption>
+          </figure>
+          <figure class="fig">
+            <img src="images/11_swaddle_step.jpg" alt="襁褓演示" loading="lazy" width="900" height="600" />
+            <figcaption>课中演示：襁褓折法中途（口鼻保持通畅）</figcaption>
+          </figure>
+        </div>
         <ul>
           <li>前 2–3 周对烦躁宝宝可能有帮助；之后常不喜欢被裹。</li>
           <li>轻薄透气；腿可活动；头颈肩不被遮；远离口鼻。</li>
@@ -732,27 +1111,77 @@
 
       <!-- 10 -->
       <section class="chapter" id="ch10">
-        <p class="chapter-label">Chapter 10</p>
+        <p class="chapter-label">第 10 章</p>
         <h2>室温、睡袋与 TOG</h2>
+
+        <p class="takeaway"><strong>带走：</strong>约 18–22℃；睡袋 + 合适 TOG；过热是风险；风扇有助流通。</p>
+        <figure class="fig">
+          <img src="images/12_sleep_bag.jpg" alt="睡袋" loading="lazy" width="900" height="600" />
+          <figcaption>课中：婴儿睡袋环节</figcaption>
+        </figure>
+
+        <figure class="fig">
+          <img src="images/13_tog.jpg" alt="TOG 表" loading="lazy" width="900" height="600" />
+          <figcaption>课中课件：TOG 保暖等级与穿衣示意（图中华氏为原课件；正文用摄氏）</figcaption>
+        </figure>
+
         <div class="badges">
           <span class="badge">18–22℃</span>
           <span class="badge coral">过热是风险</span>
           <span class="badge sand">风扇有助空气流通</span>
         </div>
+        <figure class="fig">
+          <img src="images/13_tog_clean.jpg" alt="TOG 表裁切" loading="lazy" width="900" height="600" />
+          <figcaption>课中 TOG 表裁切（原课件可能含华氏；下表用摄氏对照）</figcaption>
+        </figure>
+        <table class="data-table" aria-label="TOG 与室温粗略对照">
+          <thead>
+            <tr><th>室温（约）</th><th>TOG 思路</th><th>穿衣提示（课中语境）</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>≥ 约 27℃</td><td>很低（如 0.2）</td><td>很薄配置；防过热</td></tr>
+            <tr><td>约 24–27℃</td><td>偏低</td><td>轻薄睡袋 + 少层</td></tr>
+            <tr><td>约 20–24℃</td><td>中等</td><td>常规睡袋 + 连体衣</td></tr>
+            <tr><td>约 18–20℃</td><td>偏高</td><td>更厚 TOG 或加一层</td></tr>
+            <tr><td>&lt; 约 18℃</td><td>更高</td><td>加层；仍避免闷热</td></tr>
+          </tbody>
+        </table>
+        <p style="font-family:var(--font-ui);font-size:0.85rem;color:var(--muted);margin:-8px 0 14px">上表为课堂粗略思路整理，非品牌说明书；以宝宝胸背温度与医嘱为准。</p>
         <ul>
-          <li>婴儿房/睡眠处理想室温课中多次提到约 <strong>18–22℃</strong>，也有表述 <strong>20–22℃</strong> 区间——可理解为凉爽舒适区间。</li>
+          <li>婴儿房/睡眠环境<strong>理想室温</strong>课中多次提到约 <strong>18–22℃</strong>，也有表述 <strong>20–22℃</strong> 区间——可理解为凉爽舒适区间。</li>
           <li>过热是 SIDS 危险因素；室内睡眠<strong>不戴帽</strong>。</li>
           <li>睡袋替代松散毯子；按 <strong>TOG</strong> 选厚度：数值越低越凉快（如 0.2 适合约 ≥27℃ 时很薄配置），越高越保暖。</li>
           <li>领口袖口合身，防止宝宝滑进睡袋。</li>
           <li>风扇：课中称开风扇可大幅降低 SIDS 风险（口述约 <strong>70%–72%</strong>）；小吊扇或固定扇循环空气即可。</li>
           <li>不必每觉必用睡袋：凉爽夜晚更常用；白天盯着睡时可多穿一层代替。</li>
         </ul>
+        <figure class="fig">
+          <img src="images/19_qa_fan.jpg" alt="风扇与睡眠问答" loading="lazy" width="900" height="600" />
+          <figcaption>课中 Q&amp;A：风扇与空气流通相关讨论</figcaption>
+        </figure>
       </section>
 
       <!-- 11 -->
       <section class="chapter" id="ch11">
-        <p class="chapter-label">Chapter 11</p>
+        <p class="chapter-label">第 11 章</p>
         <h2>穿衣与体温</h2>
+
+        <p class="takeaway"><strong>带走：</strong>比自己多一层；摸胸背判断冷热；腋温报告。</p>
+        <figure class="fig">
+          <img src="images/14_dress.jpg" alt="穿衣" loading="lazy" width="900" height="600" />
+          <figcaption>课中：叠穿与连体衣选择</figcaption>
+        </figure>
+
+        <figure class="fig">
+          <img src="images/15_temp.jpg" alt="体温" loading="lazy" width="900" height="600" />
+          <figcaption>课中：体温相关说明</figcaption>
+        </figure>
+
+        <figure class="fig">
+          <img src="images/14_dress_demo.jpg" alt="穿衣演示" loading="lazy" width="900" height="600" />
+          <figcaption>课中演示：领口撑大从头套入</figcaption>
+        </figure>
+
         <div class="badges">
           <span class="badge">比自己多一层</span>
           <span class="badge sand">摸胸背测温</span>
@@ -768,8 +1197,15 @@
 
       <!-- 12 -->
       <section class="chapter" id="ch12">
-        <p class="chapter-label">Chapter 12</p>
+        <p class="chapter-label">第 12 章</p>
         <h2>洗衣与衣物选择</h2>
+
+        <p class="takeaway"><strong>带走：</strong>温和低香洗涤；敏感时回溯洗衣液；连体衣选省心开合。</p>
+        <figure class="fig">
+          <img src="images/16_laundry.jpg" alt="洗衣衣物" loading="lazy" width="900" height="600" />
+          <figcaption>课中：衣物与洗涤相关讨论</figcaption>
+        </figure>
+
         <ul>
           <li>洗衣液：课中倾向大包装普通超市洗衣液等相对温和选择；也可讨论自制配方（按课程演示）。</li>
           <li>用量举例语境：有时约四分之一杯量级（视产品而定，勿机械照搬）。</li>
@@ -780,11 +1216,44 @@
 
       <!-- 13 -->
       <section class="chapter" id="ch13">
-        <p class="chapter-label">Chapter 13</p>
+        <p class="chapter-label">第 13 章</p>
         <h2>出门与 Q&amp;A 精选</h2>
+
+        <p class="takeaway"><strong>带走：</strong>户外可早出；人多处约满六周；同床共睡不推荐。</p>
+        <figure class="fig">
+          <img src="images/17_qa.jpg" alt="问答" loading="lazy" width="900" height="600" />
+          <figcaption>课中 Q&amp;A 时段（Part 2）</figcaption>
+        </figure>
+        <div class="fig-grid">
+          <figure class="fig">
+            <img src="images/17_qa_sleep.jpg" alt="睡眠相关问答" loading="lazy" width="900" height="600" />
+            <figcaption>课中 Q&amp;A：睡眠/层数相关讨论</figcaption>
+          </figure>
+          <figure class="fig">
+            <img src="images/18_qa_outdoor.jpg" alt="出门相关问答" loading="lazy" width="900" height="600" />
+            <figcaption>课中 Q&amp;A：出门与户外相关讨论</figcaption>
+          </figure>
+        </div>
+
         <div class="badges">
           <span class="badge coral">满六周再去人多处</span>
           <span class="badge">户外可早出</span>
+        </div>
+        <div class="split-grid">
+          <div class="split-ok">
+            <h4>✓ 可以较早</h4>
+            <ul>
+              <li>户外散步（注意防晒遮挡）</li>
+              <li>控水温洗澡、迅速擦干</li>
+            </ul>
+          </div>
+          <div class="split-no">
+            <h4>✗ 宜推迟</h4>
+            <ul>
+              <li>人多密闭场所：约满六周</li>
+              <li>同床共睡</li>
+            </ul>
+          </div>
         </div>
         <ul>
           <li><strong>户外</strong>：出生后即可，注意防晒（小婴儿通常不能涂防晒霜时的遮挡策略）。</li>
@@ -798,20 +1267,23 @@
 
       <!-- 14 -->
       <section class="chapter" id="ch14">
-        <p class="chapter-label">Chapter 14</p>
+        <p class="chapter-label">第 14 章</p>
         <h2>一页速查清单</h2>
-        <ul class="checklist">
-          <li>皮肤：干燥才保湿；单一成分油霜；皮疹约两周，久了问医生；粟丘疹不挤</li>
-          <li>指甲：锉甲优先；睡着再修；过指腹或抓脸再修；袖口可翻折防抓</li>
-          <li>换尿布：前后洗手；便便立刻换；女婴前→后；男婴阴茎勿朝脐带</li>
-          <li>脐带：保持干燥；尿布折在脐带下直到脱落</li>
-          <li>药膏：有疹才涂；非预防性堆霜</li>
-          <li>睡眠：仰卧、独立空间、坚实床垫、无松软杂物；不同床共睡；沙发勿抱睡</li>
-          <li>室温：约 18–22℃；多穿一层；睡袋+合适 TOG；可开风扇</li>
-          <li>体温：摸胸背；腋温；正常约 36.5–37.5℃；发烧阈值问医生</li>
-          <li>出门：户外可早；人多处约满六周；注意防晒遮挡</li>
-          <li>心态：会求助、会筛选信息、会上靠谱的课</li>
-        </ul>
+        <p class="takeaway"><strong>带走：</strong>勾选自检，睡前扫一眼本页即可。</p>
+        <p class="check-progress" id="checkProgress">已勾选 0 / 10</p>
+        <div id="checklist">
+          <label class="check-item"><input type="checkbox" data-key="skin" /> 皮肤：干燥才保湿；单一成分油霜；皮疹约两周，久了问医生；粟丘疹不挤</label>
+          <label class="check-item"><input type="checkbox" data-key="nails" /> 指甲：锉甲优先；睡着再修；过指腹或抓脸再修；袖口可翻折防抓</label>
+          <label class="check-item"><input type="checkbox" data-key="diaper" /> 换尿布：前后洗手；便便立刻换；女婴前→后；男婴阴茎勿朝脐带</label>
+          <label class="check-item"><input type="checkbox" data-key="cord" /> 脐带：保持干燥；尿布折在脐带下直到脱落</label>
+          <label class="check-item"><input type="checkbox" data-key="ointment" /> 药膏：有疹才涂；非预防性堆霜</label>
+          <label class="check-item"><input type="checkbox" data-key="sleep" /> 睡眠：仰卧、独立空间、坚实床垫、无松软杂物；不同床共睡；沙发勿抱睡</label>
+          <label class="check-item"><input type="checkbox" data-key="room" /> 室温：约 18–22℃；多穿一层；睡袋+合适 TOG；可开风扇</label>
+          <label class="check-item"><input type="checkbox" data-key="temp" /> 体温：摸胸背；腋温；正常约 36.5–37.5℃；发烧阈值问医生</label>
+          <label class="check-item"><input type="checkbox" data-key="out" /> 出门：户外可早；人多处约满六周；注意防晒遮挡</label>
+          <label class="check-item"><input type="checkbox" data-key="mind" /> 心态：会求助、会筛选信息、会上靠谱的课</label>
+        </div>
+        <div class="check-actions"><button type="button" id="checkClear">清除全部勾选</button></div>
         <div class="callout tip">
           <span class="title">配合视频</span>
           完整中文字幕视频：同仓库或本地目录中的
@@ -823,6 +1295,7 @@
         <p><strong>来源：</strong>The Baby Academy · Free Baby Care Class（讲师 Cris）中文字幕整理。</p>
         <p><strong>用途：</strong>个人学习讲义 / GitHub Pages 静态站。非医疗建议。</p>
         <p><strong>生成：</strong>由课程 ASR 中文翻译字幕结构化改写；温度单位为摄氏度。</p>
+        <p><strong>配图：</strong>课中画面截帧，仅供个人学习笔记对照；版权归 The Baby Academy / 原课程所有，非官方教材。</p>
       </footer>
     </main>
   </div>
@@ -832,7 +1305,7 @@
       const toc = document.getElementById("toc");
       const toggle = document.getElementById("tocToggle");
       const backdrop = document.getElementById("backdrop");
-      const links = [...toc.querySelectorAll(".chapter-nav a")];
+      const links = [...toc.querySelectorAll("nav a")];
       const sections = links
         .map((a) => document.querySelector(a.getAttribute("href")))
         .filter(Boolean);
@@ -858,6 +1331,75 @@
         { rootMargin: "-20% 0px -65% 0px", threshold: 0.01 }
       );
       sections.forEach((s) => io.observe(s));
+
+      // Interactive checklist
+      const KEY = "baby-care-checklist-v1";
+      const boxes = [...document.querySelectorAll("#checklist input[type=checkbox]")];
+      const prog = document.getElementById("checkProgress");
+      function loadChecks() {
+        let data = {};
+        try { data = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch (e) {}
+        boxes.forEach((b) => { b.checked = !!data[b.dataset.key]; });
+        updateProg();
+      }
+      function saveChecks() {
+        const data = {};
+        boxes.forEach((b) => { data[b.dataset.key] = b.checked; });
+        localStorage.setItem(KEY, JSON.stringify(data));
+        updateProg();
+      }
+      function updateProg() {
+        if (!prog) return;
+        const n = boxes.filter((b) => b.checked).length;
+        prog.textContent = "已勾选 " + n + " / " + boxes.length;
+      }
+      boxes.forEach((b) => b.addEventListener("change", saveChecks));
+      const clearBtn = document.getElementById("checkClear");
+      if (clearBtn) clearBtn.addEventListener("click", () => {
+        boxes.forEach((b) => { b.checked = false; });
+        saveChecks();
+      });
+      loadChecks();
+
+      // Chapter prev/next
+      const chs = [...document.querySelectorAll("section.chapter")];
+      chs.forEach((sec, i) => {
+        const nav = document.createElement("div");
+        nav.className = "chapter-nav";
+        const prev = chs[i - 1];
+        const next = chs[i + 1];
+        const left = prev
+          ? '<a href="#' + prev.id + '">← ' + (prev.querySelector("h2")?.textContent || "上一章") + "</a>"
+          : "<span></span>";
+        const right = next
+          ? '<a href="#' + next.id + '">' + (next.querySelector("h2")?.textContent || "下一章") + " →</a>"
+          : "<span></span>";
+        nav.innerHTML = left + right;
+        sec.appendChild(nav);
+      });
+
+
+      // Reading progress
+      const bar = document.getElementById("readBar");
+      if (bar) {
+        const onScroll = () => {
+          const h = document.documentElement;
+          const max = h.scrollHeight - h.clientHeight;
+          const p = max > 0 ? (h.scrollTop / max) * 100 : 0;
+          bar.style.width = p + "%";
+        };
+        window.addEventListener("scroll", onScroll, { passive: true });
+        onScroll();
+      }
+
+      // Back to top
+      const fab = document.getElementById("fabTop");
+      if (fab) {
+        window.addEventListener("scroll", () => {
+          fab.classList.toggle("show", window.scrollY > 500);
+        }, { passive: true });
+        fab.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+      }
     })();
   </script>
 </body>
