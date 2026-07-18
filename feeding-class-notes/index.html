@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="婴儿喂养课中文讲义 — 饥饿信号、母乳、配方冲调（含热水灭菌）、拍嗝、维生素D" />
+  <title>婴儿喂养课讲义 · Baby Academy Feeding</title>
+  <style>
+    :root {
+      --bg: #f6f0e6;
+      --bg-card: #fffcf7;
+      --ink: #1c2a24;
+      --ink-soft: #3d4f46;
+      --muted: #6b7a72;
+      --green: #1f4d3a;
+      --green-soft: #2d6b52;
+      --coral: #c45c4a;
+      --coral-soft: #f3e0db;
+      --sand: #e8dcc8;
+      --line: #e0d4c2;
+      --warn-bg: #fff6e8;
+      --warn-border: #e0b060;
+      --ok-bg: #e8f3ed;
+      --shadow: 0 12px 40px rgba(28, 42, 36, 0.08);
+      --radius: 18px;
+      --toc-w: 270px;
+      --font-display: "Songti SC", "Noto Serif SC", Georgia, serif;
+      --font-body: "Songti SC", "PingFang SC", "Hiragino Sans GB", system-ui, sans-serif;
+      --font-ui: system-ui, -apple-system, "PingFang SC", "Hiragino Sans GB", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(1200px 600px at 10% -10%, #fff9ef 0%, transparent 55%),
+        radial-gradient(900px 500px at 100% 0%, #f0e6d8 0%, transparent 45%),
+        var(--bg);
+      font-family: var(--font-body);
+      line-height: 1.75;
+      font-size: 17px;
+    }
+    a { color: var(--green-soft); text-underline-offset: 3px; }
+    a:hover { color: var(--coral); }
+    .read-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; z-index: 50; pointer-events: none; }
+    .read-progress > span {
+      display: block; height: 100%; width: 0%;
+      background: linear-gradient(90deg, var(--coral), var(--green-soft));
+    }
+    .shell {
+      display: grid;
+      grid-template-columns: var(--toc-w) minmax(0, 1fr);
+      max-width: 1180px;
+      margin: 0 auto;
+      min-height: 100vh;
+    }
+    .toc {
+      position: sticky; top: 0; align-self: start;
+      height: 100vh; overflow: auto;
+      padding: 28px 18px 40px 22px;
+      border-right: 1px solid var(--line);
+      background: rgba(255, 252, 247, 0.88);
+    }
+    .toc-brand { font-family: var(--font-display); font-size: 1.15rem; color: var(--green); margin: 0 0 6px; }
+    .toc-sub { font-family: var(--font-ui); font-size: 0.75rem; color: var(--muted); margin: 0 0 18px; line-height: 1.4; }
+    .toc-home {
+      display: inline-block;
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-family: var(--font-ui);
+      font-size: 0.78rem;
+      text-decoration: none;
+    }
+    .toc-home:hover { color: var(--coral); }
+    .toc nav { display: flex; flex-direction: column; gap: 2px; }
+    .toc a {
+      font-family: var(--font-ui); font-size: 0.84rem; color: var(--ink-soft);
+      text-decoration: none; padding: 7px 10px; border-radius: 10px; border-left: 3px solid transparent;
+    }
+    .toc a:hover { background: var(--sand); color: var(--green); }
+    .toc a.active { background: var(--ok-bg); color: var(--green); border-left-color: var(--coral); font-weight: 600; }
+    .toc a.hi { background: #fff0ec; border-left-color: var(--coral); font-weight: 600; }
+    .toc-toggle {
+      display: none; font-family: var(--font-ui);
+      position: fixed; top: 14px; right: 14px; z-index: 40;
+      border: 1px solid var(--line); background: var(--bg-card);
+      border-radius: 999px; padding: 10px 16px; box-shadow: var(--shadow); cursor: pointer;
+    }
+    .backdrop { display: none; }
+    .backdrop.show { display: block; position: fixed; inset: 0; background: rgba(28,42,36,.35); z-index: 25; }
+    main { padding: 36px 40px 80px; max-width: 780px; }
+    .hero {
+      background: linear-gradient(145deg, #1f4d3a 0%, #2a6350 48%, #3a7a62 100%);
+      color: #f7f3eb; border-radius: 28px; padding: 40px 36px 32px;
+      box-shadow: var(--shadow); margin-bottom: 22px;
+    }
+    .hero-kicker { font-family: var(--font-ui); font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.8; margin: 0 0 10px; }
+    .hero h1 { font-family: var(--font-display); font-size: clamp(1.8rem, 4vw, 2.4rem); font-weight: 500; margin: 0 0 12px; line-height: 1.25; }
+    .hero p { margin: 0 0 8px; opacity: 0.93; max-width: 40em; }
+    .hero-meta { font-family: var(--font-ui); font-size: 0.86rem; opacity: 0.8; margin-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; }
+    .disclaimer {
+      background: var(--warn-bg); border: 1px solid var(--warn-border); border-radius: var(--radius);
+      padding: 14px 18px; font-family: var(--font-ui); font-size: 0.9rem; color: #5a4630; margin-bottom: 28px;
+    }
+    .disclaimer strong { color: var(--coral); }
+    section.chapter {
+      background: var(--bg-card); border: 1px solid var(--line); border-radius: var(--radius);
+      padding: 26px 26px 22px; margin-bottom: 20px; box-shadow: var(--shadow);
+    }
+    .chapter-label { font-family: var(--font-ui); font-size: 0.78rem; letter-spacing: 0.08em; color: var(--coral); margin: 0 0 4px; text-transform: uppercase; }
+    h2 { font-family: var(--font-display); font-size: 1.45rem; color: var(--green); margin: 0 0 12px; font-weight: 500; }
+    h3 { font-family: var(--font-ui); font-size: 1.02rem; color: var(--green-soft); margin: 18px 0 8px; }
+    ul, ol { padding-left: 1.25em; margin: 8px 0 12px; }
+    li { margin: 4px 0; }
+    p { margin: 0 0 10px; }
+    .takeaway {
+      margin: 0 0 14px; padding: 12px 14px; border-left: 4px solid var(--green-soft);
+      background: var(--ok-bg); border-radius: 0 12px 12px 0;
+      font-family: var(--font-ui); font-size: 0.92rem; color: var(--ink-soft);
+    }
+    .takeaway strong { color: var(--green); }
+    .badges { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 14px; }
+    .badge {
+      font-family: var(--font-ui); font-size: 0.78rem; padding: 5px 10px; border-radius: 999px;
+      background: var(--ok-bg); color: var(--green); border: 1px solid #c5dfd2;
+    }
+    .badge.coral { background: var(--coral-soft); color: var(--coral); border-color: #e0b8b0; }
+    .badge.sand { background: #f5efe4; color: #6a5a40; border-color: var(--sand); }
+    .callout {
+      border-radius: 14px; padding: 12px 14px; margin: 12px 0;
+      font-family: var(--font-ui); font-size: 0.92rem; border: 1px solid var(--line); background: #faf6f0;
+    }
+    .callout .title { display: block; font-weight: 700; font-size: 0.82rem; margin-bottom: 4px; letter-spacing: 0.04em; }
+    .callout.tip { background: var(--ok-bg); border-color: #c5dfd2; }
+    .callout.tip .title { color: var(--green); }
+    .callout.warn { background: var(--warn-bg); border-color: var(--warn-border); }
+    .callout.warn .title { color: #8a5a20; }
+    .grid-2, .split-grid { display: grid; gap: 12px; margin: 12px 0; grid-template-columns: 1fr 1fr; }
+    .abc-grid { display: grid; gap: 12px; margin: 12px 0; grid-template-columns: repeat(3, 1fr); }
+    @media (max-width:700px) {
+      .grid-2, .split-grid, .abc-grid { grid-template-columns: 1fr; }
+    }
+    .mini-card, .abc-tile, .split-ok, .split-no {
+      border-radius: 14px; padding: 12px 14px; border: 1px solid var(--line);
+      background: #faf6f0; font-family: var(--font-ui); font-size: 0.92rem;
+    }
+    .mini-card h4, .abc-tile .label, .split-ok h4, .split-no h4 { margin: 0 0 6px; font-size: 0.95rem; color: var(--green); }
+    .split-ok { background: var(--ok-bg); border-color: #c5dfd2; }
+    .split-no { background: var(--warn-bg); border-color: var(--warn-border); }
+    .split-no h4 { color: #8a5a20; }
+    .split-ok ul, .split-no ul { margin: 0; padding-left: 1.1em; }
+    .abc-tile .letter { font-family: var(--font-display); font-size: 1.6rem; color: var(--coral); display: block; line-height: 1; margin-bottom: 4px; }
+    .abc-tile .gloss { margin: 0; color: var(--ink-soft); font-size: 0.84rem; }
+    .data-table {
+      width: 100%; border-collapse: collapse; margin: 10px 0 14px;
+      font-family: var(--font-ui); font-size: 0.9rem;
+    }
+    .data-table th, .data-table td { border: 1px solid var(--line); padding: 8px 10px; text-align: left; }
+    .data-table th { background: #f0ebe3; color: var(--green); }
+    .data-table tr:nth-child(even) td { background: #faf6f0; }
+    .steps { counter-reset: step; list-style: none; padding: 0; margin: 10px 0 14px; }
+    .steps li {
+      position: relative; padding: 10px 12px 10px 48px; margin: 0 0 8px;
+      background: #faf6f0; border: 1px solid var(--line); border-radius: 12px;
+      font-family: var(--font-ui); font-size: 0.94rem;
+    }
+    .steps li::before {
+      counter-increment: step; content: counter(step);
+      position: absolute; left: 12px; top: 10px; width: 26px; height: 26px;
+      border-radius: 50%; background: var(--green); color: #fff;
+      font-size: 0.8rem; font-weight: 700; text-align: center; line-height: 26px;
+    }
+    .check-progress { font-family: var(--font-ui); font-size: 0.88rem; color: var(--muted); margin: 0 0 10px; }
+    .check-item {
+      display: block; position: relative; padding: 10px 12px 10px 40px; margin: 0 0 8px;
+      background: #faf6f0; border-radius: 12px; border: 1px solid var(--line);
+      font-family: var(--font-ui); font-size: 0.92rem; cursor: pointer; color: var(--ink-soft);
+    }
+    .check-item input { position: absolute; left: 12px; top: 14px; accent-color: var(--green-soft); }
+    .check-item:has(input:checked) { opacity: 0.72; text-decoration: line-through; color: var(--muted); }
+    .check-actions button {
+      border: none; background: none; color: var(--green-soft); text-decoration: underline;
+      cursor: pointer; font-family: var(--font-ui); font-size: 0.85rem; padding: 0;
+    }
+    .chapter-nav {
+      display: flex; justify-content: space-between; gap: 12px; margin-top: 18px; padding-top: 12px;
+      border-top: 1px dashed var(--line); font-family: var(--font-ui); font-size: 0.86rem;
+    }
+    .chapter-nav a { color: var(--green-soft); text-decoration: none; }
+    .fab-top {
+      display: none; position: fixed; right: 18px; bottom: 22px; z-index: 35;
+      width: 46px; height: 46px; border-radius: 50%; border: 1px solid var(--line);
+      background: var(--bg-card); color: var(--green); box-shadow: var(--shadow);
+      cursor: pointer; font-size: 1.2rem;
+    }
+    .fab-top.show { display: inline-flex; align-items: center; justify-content: center; }
+    .site-footer { font-family: var(--font-ui); font-size: 0.85rem; color: var(--muted); padding: 12px 4px 40px; line-height: 1.6; }
+    code { font-family: ui-monospace, Menlo, monospace; font-size: 0.88em; background: #f0ebe3; padding: 1px 6px; border-radius: 6px; }
+    .pin {
+      border: 2px solid var(--coral);
+      background: #fff8f6;
+      border-radius: 16px;
+      padding: 16px 18px;
+      margin: 14px 0 18px;
+      font-family: var(--font-ui);
+    }
+    .pin h3 { margin: 0 0 10px; color: var(--coral); font-size: 1.05rem; }
+    @media (max-width: 900px) {
+      .shell { display: block; }
+      .toc {
+        position: fixed; left: 0; top: 0; width: min(86vw, 320px); z-index: 30;
+        transform: translateX(-105%); transition: transform .2s; background: var(--bg-card);
+      }
+      .toc.open { transform: none; }
+      .toc-toggle { display: inline-block; }
+      main { padding: 24px 18px 80px; }
+    }
+    @media print {
+      .toc, .toc-toggle, .backdrop, .fab-top, .read-progress, .check-actions, .chapter-nav { display: none !important; }
+      .shell { display: block; }
+      main { max-width: none; padding: 0; }
+      section.chapter { box-shadow: none; break-inside: avoid; }
+      #ch16 { page-break-before: always; }
+      .hero { background: #fff !important; color: #000 !important; border: 1px solid #ccc; }
+      body { background: #fff; font-size: 11.5pt; }
+    }
+  </style>
+</head>
+<body>
+  <div class="read-progress" aria-hidden="true"><span id="readBar"></span></div>
+  <button class="fab-top" id="fabTop" type="button" aria-label="回到顶部">↑</button>
+  <button class="toc-toggle" id="tocToggle" type="button" aria-expanded="false">目录</button>
+  <div class="backdrop" id="backdrop" hidden></div>
+
+  <div class="shell">
+    <aside class="toc" id="toc" aria-label="讲义目录">
+      <a class="toc-home" href="../index.html">← 返回资料首页</a>
+      <p class="toc-brand">婴儿喂养课讲义</p>
+      <p class="toc-sub">Baby Academy · Feeding<br />全课要点 · 冲奶加细</p>
+      <nav>
+        <a href="#intro">课程说明</a>
+        <a href="#ch01">01 · 饥饿信号</a>
+        <a href="#ch02">02 · 肌肤接触与激素</a>
+        <a href="#ch03">03 · 初乳与供需</a>
+        <a href="#ch04">04 · 吃饱了吗 / 尿便</a>
+        <a href="#ch05">05 · 喂养方式选择</a>
+        <a href="#ch06">06 · 含乳 CHINS</a>
+        <a href="#ch07">07 · 哺乳姿势</a>
+        <a href="#ch08">08 · 双侧与泵奶时机</a>
+        <a class="hi" href="#ch09">09 · 配方装备与冲调 ★</a>
+        <a class="hi" href="#ch10">10 · 开水灭菌 vs 温水 ★</a>
+        <a class="hi" href="#ch11">11 · 保存时限 · 喂多少 ★</a>
+        <a href="#ch12">12 · 产前挤初乳</a>
+        <a href="#ch13">13 · 拍嗝</a>
+        <a href="#ch14">14 · 维生素 D</a>
+        <a href="#ch15">15 · 课堂 Q&amp;A</a>
+        <a href="#ch16">16 · 速查清单</a>
+      </nav>
+    </aside>
+
+    <main>
+      <header class="hero" id="top">
+        <p class="hero-kicker">The Baby Academy · 中文讲义</p>
+        <h1>婴儿喂养课（饥饿 · 母乳 · 配方）</h1>
+        <p>根据 Cris 主讲约 2 小时喂养课整理。全课覆盖；★ 章节为配方 / 冲奶 / 时限加细。单位：毫升与摄氏。学院称本课为喂养系列第 1 课（下一课：分娩与黄金一小时等）。</p>
+        <div class="hero-meta">
+          <span>讲师 Cris</span>
+          <span>约 119 分钟</span>
+          <span>源录像 2026-07-18</span>
+          <span>摄氏 / 毫升</span>
+        </div>
+      </header>
+
+      <div class="disclaimer" id="intro">
+        <strong>重要声明：</strong>
+        本讲义由课程英文口述转写后结构化整理，仅供个人学习备忘，
+        <strong>不能替代儿科医生、泌乳顾问或产科医嘱</strong>。
+        配方比例、是否必须热水灭菌、维生素 D 剂量，以<strong>产品说明书 + 医护当前指引</strong>为准。
+        课中统计与温度为授课人口述。
+      </div>
+
+      <section class="chapter" id="ch01">
+        <p class="chapter-label">第 01 章</p>
+        <h2>如何知道宝宝饿了</h2>
+        <p class="takeaway"><strong>带走：</strong>按饥饿信号喂（响应式喂养），不按「每 X 小时」死表。</p>
+        <div class="badges">
+          <span class="badge">响应式喂养</span>
+          <span class="badge sand">早 / 中 / 晚信号</span>
+        </div>
+        <h3>早期</h3>
+        <ul>
+          <li>睡醒扭动、张嘴、左右转头寻找。</li>
+          <li><strong>觅食反射</strong>：轻触面颊会张嘴转向该侧（找乳头 / 奶嘴）。</li>
+        </ul>
+        <h3>中期</h3>
+        <ul>
+          <li>活动增多、伸展，手进嘴吸吮，略烦躁；常无声，容易错过。</li>
+        </ul>
+        <h3>晚期</h3>
+        <ul>
+          <li>哭闹、激动、脸红——先安抚再喂；大哭时不宜硬塞奶瓶 / 乳房。</li>
+          <li>可用<strong>肌肤接触</strong>冷静后再喂（母乳或配方均可）。</li>
+        </ul>
+      </section>
+
+      <section class="chapter" id="ch02">
+        <p class="chapter-label">第 02 章</p>
+        <h2>肌肤接触与催乳激素</h2>
+        <p class="takeaway"><strong>带走：</strong>肌肤接触随时可做；催乳素夜间高，夜间喂养利于建奶量。</p>
+        <ul>
+          <li><strong>肌肤接触</strong>：裸露皮肤相对（宝宝可只穿纸尿裤）。传递菌群、调体温/心率/呼吸/血糖、促寻乳、促内啡肽。</li>
+          <li>产后黄金一小时常鼓励；之后<strong>任何时间</strong>可做；伴侣可在非哺乳时段做。</li>
+          <li><strong>催乳素</strong>：造奶。黄金一小时与夜间高；口述约凌晨 4–7 点最高。</li>
+          <li><strong>催产素</strong>：喷乳 / 下奶。吸吮刺激；放松时易产生，焦虑紧张会抑制。</li>
+        </ul>
+      </section>
+
+      <section class="chapter" id="ch03">
+        <p class="chapter-label">第 03 章</p>
+        <h2>初乳与供需关系</h2>
+        <p class="takeaway"><strong>带走：</strong>前 3–4 天初乳就是奶；量少但够；吸走多少补多少。</p>
+        <ul>
+          <li><strong>初乳</strong>：出生后约 3–4 天；茶匙级；营养、抗体丰富；胃也小。</li>
+          <li>故母乳宝宝吃得很勤。</li>
+          <li>约第 3–4 天乳房变沉胀 → 过渡到更「足」的奶（不是之前没有奶）。</li>
+          <li><strong>供需</strong>：吸走 → 再补；建立稳定奶量常约 <strong>4–6 周</strong>。</li>
+        </ul>
+      </section>
+
+      <section class="chapter" id="ch04">
+        <p class="chapter-label">第 04 章</p>
+        <h2>吃饱了吗？尿便与体重</h2>
+        <p class="takeaway"><strong>带走：</strong>信号 + 尿便 + 儿科称重；初生体重会先掉再回升常见。</p>
+        <h3>吃饱信号</h3>
+        <ul>
+          <li>吸吮 / 吞咽变慢至停止；拳头松开；吃饱安睡；稍大后东张西望。</li>
+        </ul>
+        <h3>够不够</h3>
+        <ul>
+          <li>喂后平静；有饿就喂；湿尿与大便；儿科复查增重。</li>
+          <li>24h 喂次口述：配方至少约 <strong>8 次</strong>；母乳常约 <strong>11–13 次</strong>。</li>
+        </ul>
+        <h3>湿尿粗算</h3>
+        <table class="data-table">
+          <thead><tr><th>日龄</th><th>湿尿片（约）</th></tr></thead>
+          <tbody>
+            <tr><td>第 1–6 天</td><td>约等于日龄数（1→1 … 6→6）</td></tr>
+            <tr><td>约 1 周后</td><td>≥ 6 片 / 天</td></tr>
+          </tbody>
+        </table>
+        <h3>大便</h3>
+        <ul>
+          <li>前约 3 天胎便（黑绿黏稠）。约第 4 天起：母乳便偏芥末黄带白籽；配方便偏棕较成形。</li>
+          <li>次数因人而异，不和别的宝宝比。</li>
+        </ul>
+      </section>
+
+      <section class="chapter" id="ch05">
+        <p class="chapter-label">第 05 章</p>
+        <h2>喂养方式：母乳 / 配方 / 混合</h2>
+        <p class="takeaway"><strong>带走：</strong>知情后选适合你的；没有绝对轻松的选项。</p>
+        <h3>纯母乳</h3>
+        <ul>
+          <li>只吃母乳（含挤出瓶喂）。WHO 建议约前 6 个月纯母乳。</li>
+          <li>宝宝：抗体、过敏与感染相关益处（课中表述）。妈妈：子宫收缩、部分癌症风险相关益处（口述）。</li>
+          <li>挑战：夜间频繁、难整晚交班、乳头疼、奶量焦虑；「钱免费」但牺牲睡眠与自由度。</li>
+        </ul>
+        <h3>配方</h3>
+        <ul>
+          <li>无法或不愿哺乳时的可行选择；可分担喂养与班次。</li>
+          <li>代价：瓶具与奶粉成本、冲调清洁时间；需遵守安全冲调。</li>
+        </ul>
+        <h3>混合</h3>
+        <ul>
+          <li>理想：哺乳与奶量较稳（常约 4–6 周）后再引入配方 / 瓶。</li>
+          <li>加配方时仍要吸 / 泵维系供应；勿整晚长期不吸导致奶量掉。</li>
+        </ul>
+      </section>
+
+      <section class="chapter" id="ch06">
+        <p class="chapter-label">第 06 章</p>
+        <h2>含乳：CHINS</h2>
+        <p class="takeaway"><strong>带走：</strong>深含乳 = 含进乳组织；乳头对准鼻，头后仰大口含。</p>
+        <div class="abc-grid" style="grid-template-columns:1fr 1fr">
+          <div class="abc-tile"><span class="letter">C</span><span class="label">Close 贴近</span><p class="gloss">肚贴肚；你不动躯干去凑，动的是宝宝。</p></div>
+          <div class="abc-tile"><span class="letter">H</span><span class="label">Head free</span><p class="gloss">勿捂后脑；托颈与肩胛；手可自由。</p></div>
+          <div class="abc-tile"><span class="letter">I</span><span class="label">In line</span><p class="gloss">头颈肩一直线，全身朝向你。</p></div>
+          <div class="abc-tile"><span class="letter">N</span><span class="label">Nipple to nose</span><p class="gloss">起始：乳头对鼻 → 张大口含乳晕组织。</p></div>
+          <div class="abc-tile" style="grid-column:1/-1"><span class="letter">S</span><span class="label">Sustainable</span><p class="gloss">姿势能撑完整顿；垫枕、松肩、托乳。</p></div>
+        </div>
+        <ul>
+          <li>好含乳：嘴张大、下颌压入乳、颊鼓起、有节奏吸吞。</li>
+          <li>浅含痛：干净手指破真空再移开，勿硬拔。</li>
+        </ul>
+      </section>
+
+      <section class="chapter" id="ch07">
+        <p class="chapter-label">第 07 章</p>
+        <h2>哺乳姿势</h2>
+        <p class="takeaway"><strong>带走：</strong>新手优先交叉摇篮与橄榄球式。</p>
+        <div class="grid-2">
+          <div class="mini-card"><h4>交叉摇篮</h4><p>对侧手托宝宝，同侧托乳；易控制。用枕头护肩。</p></div>
+          <div class="mini-card"><h4>橄榄球式</h4><p>宝宝在同侧腋下脚朝后；乳头易对鼻，利于深含。</p></div>
+          <div class="mini-card"><h4>摇篮式</h4><p>新手难控头；可先交叉含上再换手。</p></div>
+          <div class="mini-card"><h4>进阶</h4><p>后仰 / 考拉 / 侧卧：熟练后再试。侧卧防困、防坠床。</p></div>
+        </div>
+      </section>
+
+      <section class="chapter" id="ch08">
+        <p class="chapter-label">第 08 章</p>
+        <h2>双侧策略与泵奶时机</h2>
+        <p class="takeaway"><strong>带走：</strong>一侧主餐 + 对侧甜点；泵奶宜约 4–6 周后慢起步。</p>
+        <ul>
+          <li>先吃一侧 → 拍嗝 / 换尿布 → 再提供对侧（可吃可不吃）。</li>
+          <li>下一顿从上一顿对侧开始（皮筋记侧）。对侧没吃完不必强泵。</li>
+          <li>泵奶过早、每顿都泵易过劳与过量。可先仅早晨：宝宝吃完后轻泵 5–6 分钟剩奶冻存；凑约 90 ml（3 oz）再让伴侣试瓶，你同时在另一房间泵。</li>
+        </ul>
+      </section>
+
+      <!-- ★ 09 -->
+      <section class="chapter" id="ch09">
+        <p class="chapter-label">第 09 章 · 重点</p>
+        <h2>配方：装备与标准冲调</h2>
+        <p class="takeaway"><strong>带走：</strong>先水后粉、按罐比例、不稀释；喂前手腕试温；禁止微波。</p>
+        <div class="badges">
+          <span class="badge coral">先水后粉</span>
+          <span class="badge">按说明书</span>
+          <span class="badge sand">不稀释</span>
+        </div>
+        <h3>装备（课中）</h3>
+        <ul>
+          <li>奶瓶约 <strong>6–10 个 5 oz（约 150 ml）</strong>，品牌自选。</li>
+          <li>奶瓶刷；前约 <strong>3 个月</strong>建议消毒器具（蒸汽 / 沸水煮约 5 分钟 / 洗碗机高温等）。</li>
+          <li>奶粉：选信任品牌；可问医院用哪种以保持一致。</li>
+          <li>拍嗝巾 / 围嘴。</li>
+        </ul>
+        <h3>标准冲调步骤</h3>
+        <ol class="steps">
+          <li>奶粉未过期；罐体无瘪、鼓底、锈斑。</li>
+          <li>清洁台面；肥皂 + 温水洗手。</li>
+          <li>使用干净奶瓶与奶嘴。</li>
+          <li><strong>先量水</strong>倒入瓶中。</li>
+          <li>按罐上说明加<strong>准确勺数</strong>；勿额外加水稀释。不同国家品牌比例可能不同。</li>
+          <li>盖紧充分摇匀至无结块；泡沫静置会消。</li>
+          <li>若需加热：流动温水 / 温水杯 / 温奶器（水浴）。勿让水灌进瓶口。</li>
+          <li>滴几滴在<strong>手腕内侧</strong>：温热不烫。<strong>禁止微波炉</strong>。母乳加热同理。</li>
+          <li>喂完彻底清洗再下次使用。</li>
+        </ol>
+        <div class="split-grid">
+          <div class="split-ok">
+            <h4>✓ 应当</h4>
+            <ul>
+              <li>按说明书比例</li>
+              <li>先水后粉</li>
+              <li>手腕试温再喂</li>
+            </ul>
+          </div>
+          <div class="split-no">
+            <h4>✗ 不要</h4>
+            <ul>
+              <li>额外加水稀释</li>
+              <li>微波炉加热</li>
+              <li>喂剩再留下次</li>
+              <li>配方冷冻</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ★ 10 — critical correctness -->
+      <section class="chapter" id="ch10">
+        <p class="chapter-label">第 10 章 · 重点</p>
+        <h2>开水灭菌 vs 温水——冲奶核心</h2>
+        <p class="takeaway"><strong>带走：</strong>前约 2 个月（含足月）课中建议热水灭菌冲粉；喂入口中必须是温的。两件事别混。</p>
+
+        <div class="pin" id="sterile-pin">
+          <h3>★ 足月宝宝前两个月还要热水灭菌吗？</h3>
+          <p style="margin:0 0 10px"><strong>按本课：要。</strong>课中条件是「满足<strong>任一</strong>」——不是「只有早产才要」：</p>
+          <table class="data-table" style="margin:0">
+            <thead><tr><th>条件（课中 / CDC 语境）</th><th>热水灭菌冲粉？</th></tr></thead>
+            <tbody>
+              <tr><td>月龄 <strong>&lt; 约 2 个月</strong>（<strong>足月也算</strong>）</td><td><strong>建议要</strong></td></tr>
+              <tr><td>早产</td><td>建议要</td></tr>
+              <tr><td>免疫较弱</td><td>建议要</td></tr>
+              <tr><td>已过约 2 个月且免疫正常</td><td>课中重点回到普通冲调 + 清洁（仍按说明书）</td></tr>
+            </tbody>
+          </table>
+          <p style="margin:12px 0 0;font-size:0.88rem;color:var(--muted)">原因口述：粉状配方可能含 Cronobacter；小月龄更难扛。以儿科与当前官方指引为准。</p>
+        </div>
+
+        <h3>两步分开想</h3>
+        <div class="split-grid">
+          <div class="split-ok">
+            <h4>① 冲粉用水</h4>
+            <ul>
+              <li><strong>&lt;2 月等：</strong>先烧开 → 约晾 5 分钟到约 <strong>70℃</strong> 再冲粉（灭菌）</li>
+              <li>沸点约 100℃；课中：约 70℃（158°F）即可杀灭目标菌</li>
+              <li>先倒水再加粉，摇匀</li>
+            </ul>
+          </div>
+          <div class="split-no">
+            <h4>② 喂之前的温度</h4>
+            <ul>
+              <li>新生儿通常要<strong>温热、不烫</strong></li>
+              <li>可用温水水浴 / 温奶器降温或加温</li>
+              <li>手腕试温；禁止微波</li>
+              <li>「冲粉很烫」≠「直接烫嘴喂」</li>
+            </ul>
+          </div>
+        </div>
+
+        <h3>灭菌冲法步骤（课中）</h3>
+        <ol class="steps">
+          <li>清洁台面；肥皂温水洗手。</li>
+          <li><strong>把水烧开</strong>（约 100℃）。</li>
+          <li>关火后约<strong>静置 5 分钟</strong>，晾到约 <strong>70℃</strong> 量级（课中口述）。</li>
+          <li>先倒入瓶中准确水量 → 加准确勺粉 → 摇匀。</li>
+          <li>粉一接触热水即完成灭菌；可直接放进冰箱降温，喂前再试温。</li>
+        </ol>
+
+        <div class="callout tip">
+          <span class="title">半夜不想每次煮</span>
+          可<strong>每天一次</strong>批量用烫水冲好，立刻进<strong>冰箱</strong>，24 小时内用完；取出温热后手腕试温再喂。
+        </div>
+
+        <div class="callout warn">
+          <span class="title">不要搞混</span>
+          「温水冲粉」若指只用温吞水、跳过灭菌步骤——对 &lt;2 月（含足月）与课中建议不一致。<br />
+          「温水」正确用法多指：已按规则冲好后，用温水浴把奶<strong>调到可喂温度</strong>。
+        </div>
+      </section>
+
+      <!-- ★ 11 -->
+      <section class="chapter" id="ch11">
+        <p class="chapter-label">第 11 章 · 重点</p>
+        <h2>保存时限 · 每天喂多少 · 喂奶建议</h2>
+        <p class="takeaway"><strong>带走：</strong>室温 2h；入口 1h 丢；冷藏 24h；配方不冻。量跟信号，不跟死表。</p>
+
+        <h3>时限（课中）</h3>
+        <table class="data-table">
+          <thead><tr><th>状态</th><th>时限</th><th>说明</th></tr></thead>
+          <tbody>
+            <tr><td>冲好放室温</td><td><strong>2 小时</strong></td><td>例：17:00 冲 → 19:00 前</td></tr>
+            <tr><td>开始喂（接触嘴）后</td><td><strong>1 小时</strong></td><td>剩奶<strong>丢弃</strong>，不存</td></tr>
+            <tr><td>冲好立刻进冰箱</td><td><strong>24 小时</strong></td><td>可日批；取出温热再喂</td></tr>
+            <tr><td>液态配方冷冻</td><td><strong>不可</strong></td><td>母乳可冻；配方不行</td></tr>
+          </tbody>
+        </table>
+        <p style="font-family:var(--font-ui);font-size:0.88rem;color:var(--muted)">Q&amp;A 澄清：幻灯片「2 小时」= 室温；进冰箱则 24 小时。</p>
+
+        <h3>每天喂多少（课中立场）</h3>
+        <div class="callout tip">
+          <span class="title">重要</span>
+          讲师明确：不会给「每 X 小时喂 Y 毫升」的万能表。日与日、顿与顿不同；跟饥饿 / 吃饱信号走。
+        </div>
+        <table class="data-table">
+          <thead><tr><th>项目</th><th>课中说法</th><th>约合公制</th></tr></thead>
+          <tbody>
+            <tr><td>配方 24h 喂次</td><td>至少约 8 次</td><td>—</td></tr>
+            <tr><td>母乳 24h 喂次</td><td>常约 11–13 次</td><td>—</td></tr>
+            <tr><td>初乳单次</td><td>数茶匙级、很勤</td><td>极小量</td></tr>
+            <tr><td>试瓶库存举例</td><td>约 3 oz</td><td>约 <strong>90 ml</strong></td></tr>
+            <tr><td>常见瓶规格</td><td>5 oz</td><td>约 <strong>150 ml</strong></td></tr>
+            <tr><td>维 D：配方 &lt;32 oz/日</td><td>需补维 D</td><td>约 <strong>&lt;950 ml</strong>/日</td></tr>
+            <tr><td>维 D：配方 ≥32 oz/日</td><td>通常够</td><td>约 <strong>≥950 ml</strong>/日</td></tr>
+            <tr><td>瓶喂早期拍嗝</td><td>约每 5 ml（后可加量）</td><td>或数吞咽</td></tr>
+          </tbody>
+        </table>
+
+        <h3>喂奶建议小结</h3>
+        <div class="split-grid">
+          <div class="split-ok">
+            <h4>✓ 建议</h4>
+            <ul>
+              <li>早中期信号就喂</li>
+              <li>&lt;2 月（含足月）按课中烫水灭菌冲粉</li>
+              <li>喂前试温；剩奶丢</li>
+              <li>尿便 + 儿科体重做外证</li>
+            </ul>
+          </div>
+          <div class="split-no">
+            <h4>✗ 慎做</h4>
+            <ul>
+              <li>死表压饿</li>
+              <li>稀释奶粉</li>
+              <li>微波热奶</li>
+              <li>配方冷冻</li>
+              <li>过早高频泵奶</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="chapter" id="ch12">
+        <p class="chapter-label">第 12 章</p>
+        <h2>产前手挤初乳（可选）</h2>
+        <p class="takeaway"><strong>带走：</strong>≥37 周起、先问产科；短时手挤；冻存备份，非强制。</p>
+        <ul>
+          <li>益处：抗体、备份（剖、暂分离等）；先咨询 OB（如前置胎盘禁忌）。</li>
+          <li>学院建议 <strong>≥37 周</strong>（有资料写 36 周）。每天最多约 2–3 次、每次几分钟；用手不用泵。</li>
+          <li>1 ml 带盖注射器即可。热敷按摩 → C/U 手势：向胸壁压、挤、前移、放松 → 黄亮液体吸入针筒 → 标记日期冷冻。</li>
+          <li>量少也算数。运输保持冷冻；解冻后约 24 小时内用。</li>
+        </ul>
+      </section>
+
+      <section class="chapter" id="ch13">
+        <p class="chapter-label">第 13 章</p>
+        <h2>拍嗝</h2>
+        <p class="takeaway"><strong>带走：</strong>瓶喂吞气多、拍更勤；母乳可少；2–3 分钟无嗝可继续。</p>
+        <ul>
+          <li>背颈尽量直。姿势：过肩、坐大腿、趴腿上等。</li>
+          <li>母乳：一顿完再拍，对侧后再拍即可。</li>
+          <li>瓶喂：初期约每 <strong>5 ml</strong>；长大可改为约 15 ml / 30 ml，或每 10–15（后 20）次吞咽。</li>
+        </ul>
+      </section>
+
+      <section class="chapter" id="ch14">
+        <p class="chapter-label">第 14 章</p>
+        <h2>维生素 D</h2>
+        <p class="takeaway"><strong>带走：</strong>纯母乳：1 滴/日 ≈ 400 IU，满 1 岁前；配方看全日是否 ≥ 约 950 ml。</p>
+        <ul>
+          <li>助钙吸收与骨骼；纯母乳常不足。</li>
+          <li><strong>纯母乳</strong>：每天 1 滴 ≈ 400 IU，满一岁前；可滴乳头或瓶嘴。</li>
+          <li><strong>配方</strong>：全日 &lt; 约 32 oz（≈950 ml）仍补；≥ 约 32 oz 课中称通常够。</li>
+          <li>漏几天不必恐慌；确认是「一滴」不是数毫升。</li>
+        </ul>
+      </section>
+
+      <section class="chapter" id="ch15">
+        <p class="chapter-label">第 15 章</p>
+        <h2>课堂 Q&amp;A 精选</h2>
+        <p class="takeaway"><strong>带走：</strong>配方不冻；母乳可冻约 3–6 月（深冻更长）；批量冲靠冷藏 24h。</p>
+        <ul>
+          <li>配方能冻吗？<strong>不能</strong>。</li>
+          <li>冻母乳：约 3–6 个月；深冻可达约 12 个月（课中）。</li>
+          <li>2 小时 vs 24 小时：室温 vs 冰箱。</li>
+          <li>产前挤初乳：学院 37 周+。</li>
+          <li>泵奶：倾向约 4–6 周后慢起步。</li>
+          <li>补课邮箱课中：reception@yourbabyacademy.com</li>
+        </ul>
+      </section>
+
+      <section class="chapter" id="ch16">
+        <p class="chapter-label">第 16 章</p>
+        <h2>一页速查清单</h2>
+        <p class="takeaway"><strong>带走：</strong>勾选自检；冲奶灭菌与时限优先记牢。</p>
+        <p class="check-progress" id="checkProgress">已勾选 0 / 12</p>
+        <div id="checklist">
+          <label class="check-item"><input type="checkbox" data-key="cues" /> 按饥饿信号喂，不硬卡固定表</label>
+          <label class="check-item"><input type="checkbox" data-key="skin" /> 需要时肌肤接触；知催乳素夜间高</label>
+          <label class="check-item"><input type="checkbox" data-key="colostrum" /> 初乳是奶；供需：吸走才补</label>
+          <label class="check-item"><input type="checkbox" data-key="output" /> 尿便 + 儿科体重判断够不够</label>
+          <label class="check-item"><input type="checkbox" data-key="latch" /> CHINS：乳头对鼻、深含乳</label>
+          <label class="check-item"><input type="checkbox" data-key="mix" /> 先水后粉、按比例、不稀释、禁微波</label>
+          <label class="check-item"><input type="checkbox" data-key="sterile" /> <strong>&lt;2 月（含足月）</strong>：开水→约 70℃ 灭菌冲粉</label>
+          <label class="check-item"><input type="checkbox" data-key="feedtemp" /> 喂前手腕试温：温热不烫</label>
+          <label class="check-item"><input type="checkbox" data-key="time" /> 室温 2h；入口 1h 丢；冷藏 24h；配方不冻</label>
+          <label class="check-item"><input type="checkbox" data-key="burp" /> 瓶喂勤拍；无嗝 2–3 分钟可继续</label>
+          <label class="check-item"><input type="checkbox" data-key="vitd" /> 纯母乳 1 滴/日≈400 IU；配方看 ≈950 ml/日</label>
+          <label class="check-item"><input type="checkbox" data-key="pump" /> 泵奶约 4–6 周后慢起步</label>
+        </div>
+        <div class="check-actions"><button type="button" id="checkClear">清除全部勾选</button></div>
+      </section>
+
+      <footer class="site-footer">
+        <p><strong>来源：</strong>The Baby Academy 喂养课（讲师 Cris）英文课堂转写整理。</p>
+        <p><strong>用途：</strong>个人学习讲义。非医疗建议。非官方教材。</p>
+        <p><strong>源文件：</strong><code>上课_subs_exp/lesson2/</code>（音频与转写）。</p>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    (function () {
+      const toc = document.getElementById("toc");
+      const toggle = document.getElementById("tocToggle");
+      const backdrop = document.getElementById("backdrop");
+      const links = [...toc.querySelectorAll("nav a")];
+      const sections = links
+        .map((a) => document.querySelector(a.getAttribute("href")))
+        .filter(Boolean);
+
+      function setOpen(open) {
+        toc.classList.toggle("open", open);
+        backdrop.classList.toggle("show", open);
+        backdrop.hidden = !open;
+        toggle.setAttribute("aria-expanded", open ? "true" : "false");
+      }
+      toggle.addEventListener("click", () => setOpen(!toc.classList.contains("open")));
+      backdrop.addEventListener("click", () => setOpen(false));
+      links.forEach((a) => a.addEventListener("click", () => setOpen(false)));
+
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((en) => {
+            if (!en.isIntersecting) return;
+            const id = "#" + en.target.id;
+            links.forEach((a) => a.classList.toggle("active", a.getAttribute("href") === id));
+          });
+        },
+        { rootMargin: "-20% 0px -65% 0px", threshold: 0.01 }
+      );
+      sections.forEach((s) => io.observe(s));
+
+      const KEY = "baby-feeding-checklist-v1";
+      const boxes = [...document.querySelectorAll("#checklist input[type=checkbox]")];
+      const prog = document.getElementById("checkProgress");
+      function loadChecks() {
+        let data = {};
+        try { data = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch (e) {}
+        boxes.forEach((b) => { b.checked = !!data[b.dataset.key]; });
+        updateProg();
+      }
+      function saveChecks() {
+        const data = {};
+        boxes.forEach((b) => { data[b.dataset.key] = b.checked; });
+        localStorage.setItem(KEY, JSON.stringify(data));
+        updateProg();
+      }
+      function updateProg() {
+        if (!prog) return;
+        prog.textContent = "已勾选 " + boxes.filter((b) => b.checked).length + " / " + boxes.length;
+      }
+      boxes.forEach((b) => b.addEventListener("change", saveChecks));
+      document.getElementById("checkClear")?.addEventListener("click", () => {
+        boxes.forEach((b) => { b.checked = false; });
+        saveChecks();
+      });
+      loadChecks();
+
+      const chs = [...document.querySelectorAll("section.chapter")];
+      chs.forEach((sec, i) => {
+        const nav = document.createElement("div");
+        nav.className = "chapter-nav";
+        const prev = chs[i - 1], next = chs[i + 1];
+        nav.innerHTML =
+          (prev ? '<a href="#' + prev.id + '">← ' + (prev.querySelector("h2")?.textContent || "") + "</a>" : "<span></span>") +
+          (next ? '<a href="#' + next.id + '">' + (next.querySelector("h2")?.textContent || "") + " →</a>" : "<span></span>");
+        sec.appendChild(nav);
+      });
+
+      const bar = document.getElementById("readBar");
+      if (bar) {
+        const onScroll = () => {
+          const h = document.documentElement;
+          const max = h.scrollHeight - h.clientHeight;
+          bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + "%";
+        };
+        window.addEventListener("scroll", onScroll, { passive: true });
+        onScroll();
+      }
+
+      const fab = document.getElementById("fabTop");
+      if (fab) {
+        window.addEventListener("scroll", () => fab.classList.toggle("show", window.scrollY > 500), { passive: true });
+        fab.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+      }
+    })();
+  </script>
+</body>
+</html>
