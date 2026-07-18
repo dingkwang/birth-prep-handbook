@@ -1,0 +1,721 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="生产准备课中文手册，面向准父母的分娩、住院和产后早期准备指南。">
+  <title>生产准备课中文手册</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f3f7f6;
+      --paper: #ffffff;
+      --ink: #202522;
+      --muted: #5f6b66;
+      --line: #d6e1dd;
+      --accent: #0f766e;
+      --accent-soft: #e0f2ef;
+      --warning: #8a4b12;
+      --warning-bg: #fff2dc;
+      --shadow: 0 18px 48px rgba(24, 44, 38, 0.12);
+      --radius: 8px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.72;
+      overflow-wrap: break-word;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+    }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 3px solid rgba(15, 118, 110, 0.28);
+      outline-offset: 3px;
+    }
+
+    .site-shell {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: minmax(240px, 300px) minmax(0, 1fr);
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      padding: 28px 22px;
+      border-right: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.82);
+      backdrop-filter: blur(12px);
+      overflow: auto;
+    }
+
+    .brand {
+      margin-bottom: 24px;
+    }
+
+    .brand-label {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: 2px 10px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 13px;
+      background: var(--paper);
+    }
+
+    .brand h1 {
+      margin: 14px 0 8px;
+      font-size: 28px;
+      line-height: 1.18;
+      letter-spacing: 0;
+    }
+
+    .brand p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .actions {
+      display: grid;
+      gap: 8px;
+      margin: 22px 0 24px;
+    }
+
+    .resource-nav {
+      display: grid;
+      gap: 6px;
+      margin: 22px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .resource-nav a {
+      display: block;
+      padding: 10px 12px;
+      border: 1px solid transparent;
+      border-radius: var(--radius);
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.4;
+      text-decoration: none;
+    }
+
+    .resource-nav a:hover {
+      border-color: var(--line);
+      background: var(--paper);
+      color: var(--accent);
+    }
+
+    .resource-nav a[aria-current="page"] {
+      border-color: var(--line);
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 40px;
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--paper);
+      color: var(--ink);
+      font: inherit;
+      font-size: 14px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .button.primary {
+      border-color: var(--accent);
+      background: var(--accent);
+      color: white;
+    }
+
+    .button:hover {
+      filter: brightness(0.98);
+    }
+
+    .toc-title {
+      margin: 0 0 10px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .toc {
+      display: grid;
+      gap: 2px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .toc a {
+      display: block;
+      padding: 7px 8px;
+      border-radius: 6px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.35;
+      text-decoration: none;
+    }
+
+    .toc a:hover,
+    .toc a.active {
+      background: var(--accent-soft);
+      color: var(--accent);
+    }
+
+    main {
+      min-width: 0;
+      padding: 38px clamp(18px, 4vw, 64px) 64px;
+    }
+
+    .resource-picker {
+      max-width: 880px;
+      margin: 0 auto 18px;
+    }
+
+    .resource-picker h2 {
+      margin: 0 0 4px;
+      font-size: 20px;
+      line-height: 1.35;
+    }
+
+    .resource-picker > p {
+      margin: 0 0 12px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .resource-options {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .resource-choice {
+      display: grid;
+      gap: 3px;
+      min-width: 0;
+      min-height: 88px;
+      padding: 14px 16px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--paper);
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .resource-choice:hover {
+      border-color: var(--accent);
+    }
+
+    .resource-choice[aria-current="page"] {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+    }
+
+    .resource-choice strong {
+      color: var(--accent);
+      font-size: 16px;
+    }
+
+    .resource-choice span {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .reader {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: clamp(24px, 5vw, 56px);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--paper);
+      box-shadow: var(--shadow);
+    }
+
+    .loading,
+    .error {
+      max-width: 760px;
+      margin: 40px auto;
+      padding: 18px 20px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--paper);
+    }
+
+    .error {
+      border-color: #d89c75;
+      color: #7a2f0c;
+    }
+
+    .reader h1,
+    .reader h2,
+    .reader h3 {
+      line-height: 1.32;
+      letter-spacing: 0;
+      scroll-margin-top: 24px;
+    }
+
+    .reader h1 {
+      margin: 0 0 18px;
+      font-size: clamp(34px, 5vw, 54px);
+    }
+
+    .reader h2 {
+      margin: 48px 0 16px;
+      padding-top: 4px;
+      border-top: 1px solid var(--line);
+      font-size: clamp(24px, 3vw, 32px);
+    }
+
+    .reader h3 {
+      margin: 28px 0 10px;
+      font-size: clamp(18px, 2vw, 22px);
+    }
+
+    .reader p {
+      margin: 12px 0;
+    }
+
+    .reader blockquote {
+      margin: 22px 0;
+      padding: 14px 16px;
+      border-left: 4px solid var(--warning);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      background: var(--warning-bg);
+      color: #53300e;
+    }
+
+    .reader ul,
+    .reader ol {
+      padding-left: 1.35rem;
+    }
+
+    .reader li {
+      margin: 5px 0;
+    }
+
+    .reader table {
+      display: block;
+      width: 100%;
+      margin: 20px 0;
+      border-collapse: collapse;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .reader th,
+    .reader td {
+      min-width: 120px;
+      padding: 10px 12px;
+      border: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .reader th {
+      background: #eee7dc;
+      font-weight: 700;
+    }
+
+    .reader input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      margin-right: 8px;
+      transform: translateY(2px);
+      accent-color: var(--accent);
+    }
+
+    .top-link {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      display: none;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      background: var(--paper);
+      color: var(--accent);
+      box-shadow: 0 8px 24px rgba(57, 48, 34, 0.16);
+      cursor: pointer;
+    }
+
+    .top-link.visible {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    @media (max-width: 900px) {
+      .site-shell {
+        display: block;
+      }
+
+      .sidebar {
+        position: static;
+        height: auto;
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .brand h1 {
+        font-size: 26px;
+      }
+
+      .toc {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      }
+
+      main {
+        padding: 18px 12px 44px;
+      }
+
+      .resource-options {
+        grid-template-columns: 1fr;
+      }
+
+      .reader {
+        padding: 22px 18px;
+        border-radius: 8px;
+      }
+    }
+
+    @media print {
+      body {
+        background: white;
+      }
+
+      .sidebar,
+      .resource-picker,
+      .top-link {
+        display: none;
+      }
+
+      .site-shell {
+        display: block;
+      }
+
+      main,
+      .reader {
+        max-width: none;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        box-shadow: none;
+        background: white;
+      }
+
+      .reader h2 {
+        page-break-before: auto;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="site-shell">
+    <aside class="sidebar" aria-label="页面导航">
+      <div class="brand">
+        <a class="brand-label" href="index.html">← 返回资料首页</a>
+        <h1>生产准备课中文手册</h1>
+        <p>面向准父母的分娩、住院和产后早期准备指南。</p>
+      </div>
+      <p class="toc-title">选择资料</p>
+      <nav aria-label="资料选择">
+        <ul class="resource-nav">
+          <li><a href="birth_preparation.html" aria-current="page">生产准备课中文手册</a></li>
+          <li><a href="the_baby_academy_lesson_1.html">婴儿护理课讲义</a></li>
+        </ul>
+      </nav>
+      <div class="actions">
+        <a class="button primary" href="生产准备课中文手册.md">查看 Markdown</a>
+        <button class="button" type="button" id="printButton">打印 / 保存 PDF</button>
+      </div>
+      <p class="toc-title">目录</p>
+      <ol class="toc" id="toc"></ol>
+    </aside>
+    <main>
+      <section class="resource-picker" aria-labelledby="resourcePickerTitle">
+        <h2 id="resourcePickerTitle">选择要查看的资料</h2>
+        <p>两份中文资料都已发布，可随时切换。</p>
+        <div class="resource-options">
+          <a class="resource-choice" href="#content" aria-current="page">
+            <strong>生产准备课中文手册</strong>
+            <span>分娩、住院与产后早期准备 · 当前页面</span>
+          </a>
+          <a class="resource-choice" href="the_baby_academy_lesson_1.html">
+            <strong>婴儿护理课讲义</strong>
+            <span>换尿布、脐带、安全睡眠与新生儿日常护理 · 打开讲义</span>
+          </a>
+        </div>
+      </section>
+      <article class="reader" id="content" aria-live="polite">
+        <div class="loading">正在加载手册内容...</div>
+      </article>
+    </main>
+  </div>
+  <button class="top-link" type="button" id="topButton" aria-label="回到顶部">↑</button>
+
+  <script>
+    const markdownFile = "生产准备课中文手册.md";
+    const content = document.getElementById("content");
+    const toc = document.getElementById("toc");
+    const topButton = document.getElementById("topButton");
+
+    document.getElementById("printButton").addEventListener("click", () => window.print());
+    topButton.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+    window.addEventListener("scroll", () => {
+      topButton.classList.toggle("visible", window.scrollY > 700);
+      updateActiveToc();
+    });
+
+    fetch(encodeURI(markdownFile))
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}`);
+        }
+        return response.text();
+      })
+      .then((markdown) => {
+        content.innerHTML = renderMarkdown(markdown);
+        buildToc();
+        updateActiveToc();
+      })
+      .catch((error) => {
+        content.innerHTML = `<div class="error">无法加载 Markdown 手册。请确认 GitHub Pages 已从 main 分支根目录发布。错误：${escapeHtml(error.message)}</div>`;
+      });
+
+    function renderMarkdown(markdown) {
+      const lines = stripInlineMarkdownToc(markdown).replace(/\r\n/g, "\n").split("\n");
+      const html = [];
+      let paragraph = [];
+      let listType = null;
+      let tableRows = [];
+      const headingIds = new Map();
+
+      function flushParagraph() {
+        if (paragraph.length) {
+          html.push(`<p>${parseInline(paragraph.join(" "))}</p>`);
+          paragraph = [];
+        }
+      }
+
+      function flushList() {
+        if (listType) {
+          html.push(`</${listType}>`);
+          listType = null;
+        }
+      }
+
+      function flushTable() {
+        if (!tableRows.length) return;
+        const rows = tableRows.filter((row) => !/^(\s*\|?\s*:?-{3,}:?\s*)+\|?\s*$/.test(row));
+        if (rows.length) {
+          html.push("<table>");
+          rows.forEach((row, index) => {
+            const cells = splitTableRow(row);
+            const tag = index === 0 ? "th" : "td";
+            html.push(`<tr>${cells.map((cell) => `<${tag}>${parseInline(cell.trim())}</${tag}>`).join("")}</tr>`);
+          });
+          html.push("</table>");
+        }
+        tableRows = [];
+      }
+
+      for (const rawLine of lines) {
+        const line = rawLine.trimEnd();
+        const trimmed = line.trim();
+
+        if (!trimmed) {
+          flushParagraph();
+          flushList();
+          flushTable();
+          continue;
+        }
+
+        if (trimmed.includes("|") && /^\|?.+\|.+\|?$/.test(trimmed)) {
+          flushParagraph();
+          flushList();
+          tableRows.push(trimmed);
+          continue;
+        }
+
+        flushTable();
+
+        const heading = /^(#{1,3})\s+(.+)$/.exec(trimmed);
+        if (heading) {
+          flushParagraph();
+          flushList();
+          const level = heading[1].length;
+          const text = heading[2].trim();
+          html.push(`<h${level} id="${uniqueSlug(text, headingIds)}">${parseInline(text)}</h${level}>`);
+          continue;
+        }
+
+        if (trimmed.startsWith("> ")) {
+          flushParagraph();
+          flushList();
+          html.push(`<blockquote>${parseInline(trimmed.slice(2))}</blockquote>`);
+          continue;
+        }
+
+        const unordered = /^-\s+(.+)$/.exec(trimmed);
+        const ordered = /^\d+\.\s+(.+)$/.exec(trimmed);
+        if (unordered || ordered) {
+          flushParagraph();
+          const desired = ordered ? "ol" : "ul";
+          if (listType !== desired) {
+            flushList();
+            html.push(`<${desired}>`);
+            listType = desired;
+          }
+          const parsedItem = parseListItem((unordered || ordered)[1]);
+          html.push(`<li>${parsedItem}</li>`);
+          continue;
+        }
+
+        flushList();
+        paragraph.push(trimmed);
+      }
+
+      flushParagraph();
+      flushList();
+      flushTable();
+      return html.join("\n");
+    }
+
+    function stripInlineMarkdownToc(markdown) {
+      const lines = markdown.replace(/\r\n/g, "\n").split("\n");
+      const output = [];
+      let skippingToc = false;
+
+      for (const line of lines) {
+        if (/^##\s+目录\s*$/.test(line.trim())) {
+          skippingToc = true;
+          continue;
+        }
+
+        if (skippingToc && /^##\s+/.test(line.trim())) {
+          skippingToc = false;
+        }
+
+        if (!skippingToc) {
+          output.push(line);
+        }
+      }
+
+      return output.join("\n");
+    }
+
+    function parseListItem(item) {
+      const unchecked = /^\[ \]\s+(.+)$/.exec(item);
+      if (unchecked) {
+        return `<input type="checkbox" disabled> ${parseInline(unchecked[1])}`;
+      }
+
+      const checked = /^\[x\]\s+(.+)$/i.exec(item);
+      if (checked) {
+        return `<input type="checkbox" checked disabled> ${parseInline(checked[1])}`;
+      }
+
+      return parseInline(item);
+    }
+
+    function splitTableRow(row) {
+      return row.replace(/^\|/, "").replace(/\|$/, "").split("|");
+    }
+
+    function parseInline(value) {
+      return escapeHtml(value)
+        .replace(/`([^`]+)`/g, "<code>$1</code>")
+        .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
+        .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+    }
+
+    function escapeHtml(value) {
+      return value
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+
+    function slugify(text) {
+      return text
+        .toLowerCase()
+        .replace(/[、：:（）()\/]/g, "")
+        .replace(/[^\p{Letter}\p{Number}\s-]/gu, "")
+        .trim()
+        .replace(/\s+/g, "-");
+    }
+
+    function uniqueSlug(text, seen) {
+      const base = slugify(text);
+      const count = seen.get(base) || 0;
+      seen.set(base, count + 1);
+      return count === 0 ? base : `${base}-${count + 1}`;
+    }
+
+    function buildToc() {
+      const headings = [...content.querySelectorAll("h2")].filter((heading) => heading.textContent !== "目录");
+      toc.innerHTML = headings.map((heading) => (
+        `<li><a href="#${heading.id}">${heading.textContent}</a></li>`
+      )).join("");
+    }
+
+    function updateActiveToc() {
+      const links = [...toc.querySelectorAll("a")];
+      if (!links.length) return;
+
+      let activeId = links[0].getAttribute("href").slice(1);
+      const headings = [...content.querySelectorAll("h2")].filter((heading) => heading.textContent !== "目录");
+      for (const heading of headings) {
+        if (heading.offsetTop - window.scrollY < 160) {
+          activeId = heading.id;
+        }
+      }
+
+      links.forEach((link) => {
+        link.classList.toggle("active", link.getAttribute("href") === `#${activeId}`);
+      });
+    }
+  </script>
+</body>
+</html>

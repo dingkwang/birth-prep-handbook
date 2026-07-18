@@ -77,6 +77,15 @@
       margin: 0 0 6px;
       letter-spacing: 0.02em;
     }
+    .toc-home {
+      display: inline-block;
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-family: var(--font-ui);
+      font-size: 0.78rem;
+      text-decoration: none;
+    }
+    .toc-home:hover { color: var(--coral); }
     .toc-sub {
       font-family: var(--font-ui);
       font-size: 0.75rem;
@@ -442,11 +451,12 @@
 
   <div class="shell">
     <aside class="toc" id="toc" aria-label="讲义目录">
+      <a class="toc-home" href="index.html">← 返回资料首页</a>
       <p class="toc-brand">婴儿护理课讲义</p>
       <p class="toc-sub">Free Baby Care Class<br />结构化中文要点</p>
       <p class="resource-label">选择资料</p>
       <nav class="resource-nav" aria-label="资料选择">
-        <a href="index.html">生产准备课中文手册</a>
+        <a href="birth_preparation.html">生产准备课中文手册</a>
         <a href="the_baby_academy_lesson_1.html" aria-current="page">婴儿护理课讲义</a>
       </nav>
       <p class="chapter-label-nav">本页目录</p>
